@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<title>WC 2026 · Dashboard 2</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0c0e1a;--bg2:#111428;--bg3:#161a30;
+  --border:rgba(255,255,255,0.08);
+  --purple:#7c5cfc;--cyan:#00d4ff;--green:#00e676;--red:#ff4757;
+  --gold:#FFD700;--silver:#C0C0C0;--bronze:#CD7F32;
+  --muted:rgba(255,255,255,0.38);
+  --card:rgba(255,255,255,0.05);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:#fff;font-family:'Barlow Condensed',sans-serif;min-height:100vh;padding-bottom:80px}
+.header{background:linear-gradient(135deg,#1a0a3e 0%,#0c0e1a 60%);padding:22px 16px 16px;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.header::before{content:'';position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:80%;height:120%;background:radial-gradient(ellipse,rgba(124,92,252,0.2) 0%,transparent 70%);pointer-events:none}
+.h-badge{display:inline-block;background:linear-gradient(90deg,var(--purple),var(--cyan));color:#fff;font-weight:700;font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:4px 14px;border-radius:100px;margin-bottom:8px}
+.h-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,7vw,44px);letter-spacing:3px;line-height:1}
+.h-sub{font-size:12px;color:var(--muted);letter-spacing:2px;margin-top:4px;text-transform:uppercase}
+.h-stats{display:flex;justify-content:center;gap:24px;margin-top:12px}
+.h-stat-val{font-family:'Bebas Neue',sans-serif;font-size:20px;background:linear-gradient(135deg,var(--purple),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.h-stat-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px}
+.tab-bar{position:sticky;top:0;z-index:100;display:flex;background:#0f1120;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-btn{flex:1;min-width:80px;padding:12px 8px;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s ease;white-space:nowrap}
+.tab-btn.active{color:#fff;border-bottom-color:var(--purple)}
+.tab-btn .t-icon{display:block;font-size:16px;margin-bottom:2px}
+.tab-content{display:none;padding:16px}
+.tab-content.active{display:block}
+.s-title{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.s-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.podium{display:flex;align-items:flex-end;gap:8px;margin-bottom:16px}
+.podium-item{flex:1;text-align:center;padding:14px 8px;border-radius:12px;position:relative;overflow:hidden}
+.podium-item.p1{background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.35);transform:scale(1.04);order:2}
+.podium-item.p2{background:rgba(192,192,192,0.08);border:1px solid rgba(192,192,192,0.25);order:1}
+.podium-item.p3{background:rgba(205,127,50,0.08);border:1px solid rgba(205,127,50,0.25);order:3}
+.p-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:100%;height:100%;pointer-events:none}
+.p1 .p-glow{background:radial-gradient(ellipse at 50% 0%,rgba(255,215,0,0.12),transparent 70%)}
+.p2 .p-glow{background:radial-gradient(ellipse at 50% 0%,rgba(192,192,192,0.08),transparent 70%)}
+.p3 .p-glow{background:radial-gradient(ellipse at 50% 0%,rgba(205,127,50,0.08),transparent 70%)}
+.p-medal{font-size:24px;margin-bottom:4px}
+.p1 .p-medal{font-size:28px}
+.p-name{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;line-height:1}
+.p1 .p-name{font-size:22px;color:var(--gold)}
+.p2 .p-name{color:var(--silver)}
+.p3 .p-name{color:var(--bronze)}
+.p-pts{font-size:22px;font-weight:900;line-height:1;margin-top:2px}
+.p1 .p-pts{color:var(--gold);font-size:26px}
+.p2 .p-pts{color:var(--silver)}
+.p3 .p-pts{color:var(--bronze)}
+.p-today{font-size:11px;color:rgba(255,255,255,0.45);margin-top:3px}
+.table-row{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;background:var(--card);border:1px solid var(--border);margin-bottom:6px}
+.table-row.danger{border-color:rgba(255,71,87,0.25);background:rgba(255,71,87,0.05)}
+.tr-rank{font-family:'Bebas Neue',sans-serif;font-size:18px;min-width:26px;color:var(--muted)}
+.tr-dot{width:8px;height:8px;border-radius:50%;min-width:8px}
+.tr-name{flex:1;font-size:15px;font-weight:700}
+.tr-today{font-size:13px;font-weight:700;min-width:44px;text-align:right}
+.tr-total{font-family:'Bebas Neue',sans-serif;font-size:20px;min-width:40px;text-align:right}
+.tr-arrow{font-size:13px;min-width:28px;text-align:center}
+.up{color:#00e676}.down{color:#ff4757}.flat{color:var(--muted)}
+.awards-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.award-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 12px;position:relative;overflow:hidden;animation:fadeUp 0.4s ease both}
+.award-card:nth-child(1){animation-delay:0.05s}.award-card:nth-child(2){animation-delay:0.1s}.award-card:nth-child(3){animation-delay:0.15s}.award-card:nth-child(4){animation-delay:0.2s}.award-card:nth-child(5){animation-delay:0.25s}.award-card:nth-child(6){animation-delay:0.3s}.award-card:nth-child(7){animation-delay:0.35s}.award-card:nth-child(8){animation-delay:0.4s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.award-glow{position:absolute;top:0;right:0;width:60px;height:60px;border-radius:50%;opacity:0.15;pointer-events:none}
+.award-icon{font-size:22px;margin-bottom:6px}
+.award-lbl{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:3px}
+.award-winner{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;line-height:1}
+.award-detail{font-size:11px;color:var(--muted);margin-top:3px}
+.match-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.match-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.match-teams{font-size:14px;font-weight:700;line-height:1.3}
+.match-score{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;background:linear-gradient(135deg,var(--purple),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.bar-lbl{font-size:11px;color:var(--muted);min-width:90px}
+.bar-track{flex:1;height:18px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;padding:0 8px;font-size:11px;font-weight:700;color:#000;transition:width 1s ease}
+.bar-fill.correct{background:linear-gradient(90deg,#00e676,#00b894)}
+.bar-fill.exact{background:linear-gradient(90deg,var(--cyan),var(--purple))}
+.match-diff{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:100px;margin-top:4px}
+.diff-easy{background:rgba(0,230,118,0.15);color:#00e676}
+.diff-medium{background:rgba(255,215,0,0.15);color:#FFD700}
+.diff-hard{background:rgba(255,71,87,0.15);color:#ff4757}
+.chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px}
+.chart-legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--muted)}
+.leg-dot{width:8px;height:8px;border-radius:50%}
+.recap-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.recap-rank{font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--muted);min-width:24px}
+.recap-name{flex:1;font-size:14px;font-weight:700}
+.recap-bar-track{flex:2;height:14px;background:rgba(255,255,255,0.06);border-radius:100px;overflow:hidden}
+.recap-bar-fill{height:100%;border-radius:100px}
+.recap-pts{font-size:14px;font-weight:700;min-width:36px;text-align:right}
+</style>
+</head>
+<body>
+
+<script id="COWORK_DATA">
+/* ================================================================
+   COWORK: UPDATE THIS BLOCK DAILY
+   Add a new entry to 'days' after each match day.
+   Update 'todaysMatches' with today's games.
+   ================================================================ */
+const DATA = {
+  date: "June 12, 2026",
+  dayNo: 2,
+  totalMatches: 72,
+
+  players: [
+    { name:"Are",      color:"#F4D03F" },
+    { name:"Aage",     color:"#EB5757" },
+    { name:"Tina",     color:"#FF6B9D" },
+    { name:"Maddi",    color:"#A29BFE" },
+    { name:"Linus",    color:"#00CEC9" },
+    { name:"Filip",    color:"#FDCB6E" },
+    { name:"Petter",   color:"#6C5CE7" },
+    { name:"Hanne",    color:"#76D7C4" },
+    { name:"Ragnhild", color:"#FD79A8" },
+    { name:"Ine",      color:"#81ECEC" },
+    { name:"Max",      color:"#E17055" },
+    { name:"Maia",     color:"#74B9FF" },
+    { name:"Tobias",   color:"#55EFC4" },
+    { name:"Marcus",   color:"#FF7675" },
+    { name:"Malin",    color:"#5DADE2" },
+    { name:"Sarah",    color:"#B2BEC3" },
+    { name:"Berit",    color:"#DFE6E9" },
+    { name:"Halvor",   color:"#00B894" }
+  ],
+
+  // pts = TODAY's points only (not cumulative)
+  days: [
+    { day:1, date:"Jun 11", matches:1, pts:{ Are:3, Aage:1, Tina:3, Maddi:1, Linus:3, Filip:1, Petter:0, Hanne:1, Ragnhild:3, Ine:1, Max:1, Maia:1, Tobias:3, Marcus:1, Malin:3, Sarah:0, Berit:0, Halvor:1 } },
+    { day:2, date:"Jun 12", matches:1, pts:{ Are:3, Aage:0, Tina:0, Maddi:0, Linus:3, Filip:3, Petter:0, Hanne:0, Ragnhild:0, Ine:0, Max:0, Maia:1, Tobias:0, Marcus:3, Malin:0, Sarah:0, Berit:0, Halvor:0 } }
+  ],
+
+  todaysMatches: [
+    { home:"Sør-Korea", away:"Tsjekkia", result:"2-1", correctWinner:5, exactScore:4 }
+  ]
+};
+/* ================================================================ */
+</script>
+
+<div class="header">
+  <div class="h-badge">⚽ WC 2026 · DASHBOARD 2</div>
+  <div class="h-title">STATS & ANALYSIS</div>
+  <div class="h-sub" id="h-sub"></div>
+  <div class="h-stats" id="h-stats"></div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="showTab('table',this)"><span class="t-icon">🏆</span>Table</button>
+  <button class="tab-btn" onclick="showTab('today',this)"><span class="t-icon">⚡</span>Today</button>
+  <button class="tab-btn" onclick="showTab('awards',this)"><span class="t-icon">🎖</span>Awards</button>
+  <button class="tab-btn" onclick="showTab('trend',this)"><span class="t-icon">📈</span>Trend</button>
+</div>
+
+<div class="tab-content active" id="tab-table">
+  <div class="s-title">🏆 Top 3</div>
+  <div class="podium" id="podium"></div>
+  <div class="s-title">📋 Full standings</div>
+  <div id="full-table"></div>
+</div>
+
+<div class="tab-content" id="tab-today">
+  <div class="s-title">⚡ Points today — all 18</div>
+  <div id="today-all"></div>
+  <div class="s-title" style="margin-top:16px">⚽ Match analysis</div>
+  <div id="match-cards"></div>
+</div>
+
+<div class="tab-content" id="tab-awards">
+  <div class="s-title">🎖 Daily awards</div>
+  <div class="awards-grid" id="awards-grid"></div>
+</div>
+
+<div class="tab-content" id="tab-trend">
+  <div class="s-title">📈 Cumulative points — Top 6</div>
+  <div class="chart-wrap">
+    <div class="chart-legend" id="chart-legend"></div>
+    <canvas id="trendChart" height="220"></canvas>
+  </div>
+  <div class="s-title" style="margin-top:16px">📊 Daily average</div>
+  <div id="avg-table"></div>
+</div>
+
+<script>
+const totalPts = n => DATA.days.reduce((s,d)=>s+(d.pts[n]||0),0);
+const dayPts   = (n,i)=>DATA.days[i]?.pts[n]||0;
+const cumul    = n=>{ let t=0; return DATA.days.map(d=>{t+=d.pts[n]||0;return t;}); };
+const lastN    = (n,k)=>{ const l=DATA.days.length; let s=0; for(let i=Math.max(0,l-k);i<l;i++) s+=dayPts(n,i); return s; };
+const maxBy    = fn=>[...DATA.players].sort((a,b)=>fn(b)-fn(a))[0];
+const minBy    = fn=>[...DATA.players].sort((a,b)=>fn(a)-fn(b))[0];
+const stdDev   = n=>{ const v=DATA.days.map(d=>d.pts[n]||0); const avg=v.reduce((a,b)=>a+b)/v.length; return Math.sqrt(v.reduce((a,b)=>a+Math.pow(b-avg,2),0)/v.length); };
+
+const lastIdx   = DATA.days.length-1;
+const played    = DATA.days.reduce((s,d)=>s+(d.matches||0),0);
+const total     = DATA.players.length;
+
+function rankMap(idx){
+  const arr=[...DATA.players].map(p=>({n:p.name,t:DATA.days.slice(0,idx+1).reduce((s,d)=>s+(d.pts[p.name]||0),0)}));
+  arr.sort((a,b)=>b.t-a.t);
+  const m={}; arr.forEach((x,i)=>m[x.n]=i+1); return m;
+}
+const currR=rankMap(lastIdx);
+const prevR=lastIdx>0?rankMap(lastIdx-1):currR;
+
+const sorted=[...DATA.players].map(p=>({
+  ...p, total:totalPts(p.name), todayPts:dayPts(p.name,lastIdx),
+  rank:currR[p.name], delta:prevR[p.name]-currR[p.name]
+})).sort((a,b)=>a.rank-b.rank);
+
+/* HEADER */
+document.getElementById('h-sub').textContent=`Day ${DATA.dayNo} · ${DATA.date}`;
+document.getElementById('h-stats').innerHTML=`
+  <div><div class="h-stat-val">${total}</div><div class="h-stat-lbl">Participants</div></div>
+  <div><div class="h-stat-val">${played}</div><div class="h-stat-lbl">Matches played</div></div>
+  <div><div class="h-stat-val">${Math.round(played/DATA.totalMatches*100)}%</div><div class="h-stat-lbl">Complete</div></div>`;
+
+/* TABS */
+function showTab(id,btn){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+  if(id==='trend') buildChart();
+}
+
+/* PODIUM */
+const medals=['🥇','🥈','🥉'];
+const podEl=document.getElementById('podium');
+sorted.slice(0,3).forEach((p,i)=>{
+  podEl.innerHTML+=`
+    <div class="podium-item p${i+1}">
+      <div class="p-glow"></div>
+      <div class="p-medal">${medals[i]}</div>
+      <div class="p-name">${p.name}</div>
+      <div class="p-pts">${p.total}</div>
+      <div class="p-today">+${p.todayPts} today</div>
+    </div>`;
+});
+
+/* FULL TABLE */
+const ftEl=document.getElementById('full-table');
+sorted.slice(3).forEach(p=>{
+  const danger=p.rank>total-3;
+  const d=p.delta;
+  const arrow=d>0?`<span class="up">↑${d}</span>`:d<0?`<span class="down">↓${Math.abs(d)}</span>`:`<span class="flat">—</span>`;
+  const tc=p.todayPts>10?'#00e676':p.todayPts>7?'#FFD700':'#aaa';
+  ftEl.innerHTML+=`
+    <div class="table-row ${danger?'danger':''}">
+      <div class="tr-rank">${p.rank}</div>
+      <div class="tr-dot" style="background:${p.color}"></div>
+      <div class="tr-name">${p.name}</div>
+      <div class="tr-today" style="color:${tc}">+${p.todayPts}</div>
+      <div class="tr-total">${p.total}</div>
+      <div class="tr-arrow">${arrow}</div>
+    </div>`;
+});
+
+/* TODAY ALL */
+const todaySorted=[...sorted].sort((a,b)=>b.todayPts-a.todayPts);
+const maxDay=todaySorted[0].todayPts;
+const taEl=document.getElementById('today-all');
+todaySorted.forEach((p,i)=>{
+  const pct=Math.round(p.todayPts/maxDay*100);
+  const col=i===0?'linear-gradient(90deg,#FFD700,#f0b429)':i===1?'linear-gradient(90deg,#C0C0C0,#a8a8b0)':i===2?'linear-gradient(90deg,#CD7F32,#b86e28)':`linear-gradient(90deg,${p.color}99,${p.color}55)`;
+  taEl.innerHTML+=`
+    <div class="recap-row">
+      <div class="recap-rank">${i+1}</div>
+      <div class="recap-name">${p.name}</div>
+      <div class="recap-bar-track"><div class="recap-bar-fill" style="width:${pct}%;background:${col}"></div></div>
+      <div class="recap-pts" style="color:${p.color}">+${p.todayPts}</div>
+    </div>`;
+});
+
+/* MATCH CARDS */
+const mcEl=document.getElementById('match-cards');
+DATA.todaysMatches.forEach(m=>{
+  const pW=Math.round(m.correctWinner/total*100);
+  const pE=Math.round(m.exactScore/total*100);
+  const diff=pW>75?'easy':pW>50?'medium':'hard';
+  const diffLabel={easy:'Easy',medium:'Moderate',hard:'Hard'}[diff];
+  mcEl.innerHTML+=`
+    <div class="match-card">
+      <div class="match-header">
+        <div class="match-teams">${m.home}<br>${m.away}</div>
+        <div class="match-score">${m.result}</div>
+      </div>
+      <div class="bar-row"><div class="bar-lbl">Correct winner</div><div class="bar-track"><div class="bar-fill correct" style="width:${pW}%">${m.correctWinner}/${total}</div></div></div>
+      <div class="bar-row"><div class="bar-lbl">Exact score</div><div class="bar-track"><div class="bar-fill exact" style="width:${pE}%">${m.exactScore}/${total}</div></div></div>
+      <span class="match-diff diff-${diff}">${diffLabel}</span>
+    </div>`;
+});
+
+/* AWARDS */
+const dagensBest  = todaySorted[0];
+const dagensVerst = todaySorted[todaySorted.length-1];
+const varmest     = maxBy(p=>lastN(p.name,2));
+const kaldest     = minBy(p=>lastN(p.name,2));
+const konsistent  = minBy(p=>stdDev(p.name));
+const rakett      = sorted.reduce((b,p)=>p.delta>b.delta?p:b, sorted[0]);
+const krakk       = sorted.reduce((b,p)=>p.delta<b.delta?p:b, sorted[0]);
+
+[
+  {icon:'🏆', lbl:'Top scorer today',   p:dagensBest,  detail:`+${dagensBest.todayPts} pts today`,            color:'#FFD700'},
+  {icon:'🚀', lbl:"Today's rocket",     p:rakett,      detail:`+${rakett.delta} places up`,                   color:'#00e676'},
+  {icon:'🔥', lbl:'Hottest right now',  p:varmest,     detail:`${lastN(varmest.name,2)} pts last 2 days`,     color:'#ff6b35'},
+  {icon:'🎯', lbl:'Most consistent',    p:konsistent,  detail:`±${stdDev(konsistent.name).toFixed(1)} pts/day`,color:'#00d4ff'},
+  {icon:'📉', lbl:"Today's faller",     p:krakk,       detail:`${Math.abs(krakk.delta)} places down`,         color:'#ff4757'},
+  {icon:'❄️', lbl:'Coldest right now',  p:kaldest,     detail:`${lastN(kaldest.name,2)} pts last 2 days`,     color:'#85c1e9'},
+  {icon:'😤', lbl:'Struggling today',   p:dagensVerst, detail:`Only +${dagensVerst.todayPts} pts today`,      color:'#e74c3c'},
+  {icon:'👑', lbl:'Commanding lead',    p:sorted[0],   detail:`${sorted[0].total-sorted[1].total} pts ahead`, color:'#c8a84b'}
+].forEach(a=>{
+  document.getElementById('awards-grid').innerHTML+=`
+    <div class="award-card">
+      <div class="award-glow" style="background:${a.color}"></div>
+      <div class="award-icon">${a.icon}</div>
+      <div class="award-lbl">${a.lbl}</div>
+      <div class="award-winner" style="color:${a.p.color}">${a.p.name}</div>
+      <div class="award-detail">${a.detail}</div>
+    </div>`;
+});
+
+/* TREND CHART */
+let chartBuilt=false;
+function buildChart(){
+  if(chartBuilt)return; chartBuilt=true;
+  const top6=sorted.slice(0,6);
+  const legEl=document.getElementById('chart-legend');
+  top6.forEach(p=>{ legEl.innerHTML+=`<div class="leg-item"><div class="leg-dot" style="background:${p.color}"></div>${p.name}</div>`; });
+  new Chart(document.getElementById('trendChart').getContext('2d'),{
+    type:'line',
+    data:{
+      labels:DATA.days.map(d=>d.date),
+      datasets:top6.map(p=>({
+        label:p.name, data:cumul(p.name),
+        borderColor:p.color, backgroundColor:p.color+'18',
+        borderWidth:2.5, pointRadius:5,
+        pointBackgroundColor:p.color, pointBorderColor:'#0c0e1a', pointBorderWidth:2,
+        tension:0.35, fill:false
+      }))
+    },
+    options:{
+      responsive:true,
+      plugins:{
+        legend:{display:false},
+        tooltip:{backgroundColor:'#161a30',borderColor:'rgba(124,92,252,0.3)',borderWidth:1,titleColor:'#fff',bodyColor:'rgba(255,255,255,0.7)',padding:10,callbacks:{label:ctx=>` ${ctx.dataset.label}: ${ctx.parsed.y}pts`}}
+      },
+      scales:{
+        x:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'rgba(255,255,255,0.4)',font:{family:'Barlow Condensed',size:12}}},
+        y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'rgba(255,255,255,0.4)',font:{family:'Barlow Condensed',size:12}}}
+      }
+    }
+  });
+  const avgEl=document.getElementById('avg-table');
+  const maxAvg=Math.max(...sorted.map(p=>totalPts(p.name)/DATA.days.length));
+  sorted.forEach(p=>{
+    const avg=(totalPts(p.name)/DATA.days.length).toFixed(1);
+    const pct=Math.round(avg/maxAvg*100);
+    avgEl.innerHTML+=`
+      <div class="table-row" style="margin-bottom:6px">
+        <div class="tr-rank">${p.rank}</div>
+        <div class="tr-dot" style="background:${p.color}"></div>
+        <div class="tr-name">${p.name}</div>
+        <div style="flex:1;margin:0 8px"><div style="height:12px;background:rgba(255,255,255,0.05);border-radius:4px;overflow:hidden"><div style="height:100%;width:${pct}%;background:linear-gradient(90deg,var(--purple),var(--cyan));border-radius:4px"></div></div></div>
+        <div style="font-size:14px;font-weight:700;color:var(--cyan);min-width:52px;text-align:right">${avg} pts/d</div>
+      </div>`;
+  });
+}
+</script>
+</body>
+</html>
