@@ -2,330 +2,713 @@
 <html lang="no">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
-<title>Maihaugen Tippekonkurranse</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<title>Maihaugen Playoffs – VM 2026</title>
 </head>
 <body>
 
-<script id="COWORK_DATA">
-/* ================================================================
-   COWORK: OPPDATER KUN DENNE BLOKKEN HVER DAG.
-   Ikke endre noe annet i filen.
-
-   Slik oppdaterer du:
-   1. Endre DATO til dagens dato
-   2. Øk DAG_NR med 1
-   3. Oppdater KAMPER_SPILT (totalt antall kamper spilt så langt)
-   4. Oppdater poeng, riktige, vinnere og feil for hver deltaker
-   ================================================================ */
-
+<script id="DATA_BLOCK">
 const DATA = {
-  dato:          "28. juni 2026",
-  dagNr:         18,
-  kamperSpilt:   72,
-  totaleKamper:  72,
+  oppdatert: "29. juni 2026",
+  kamperSpilt: 2,
+  totaleKamper: 16,
 
   deltakere: [
-    { navn: "Linus",    poeng: 66, riktige: 9,  vinnere: 39, feil: 24 },
-    { navn: "Tina",     poeng: 65, riktige: 10, vinnere: 35, feil: 27 },
-    { navn: "Petter",   poeng: 64, riktige: 8,  vinnere: 40, feil: 24 },
-    { navn: "Tobias",   poeng: 64, riktige: 11, vinnere: 31, feil: 30 },
-    { navn: "Halvor",   poeng: 63, riktige: 10, vinnere: 33, feil: 29 },
-    { navn: "Sarah",    poeng: 61, riktige: 9,  vinnere: 34, feil: 29 },
-    { navn: "Are",      poeng: 60, riktige: 7,  vinnere: 39, feil: 26 },
-    { navn: "Maia",     poeng: 60, riktige: 8,  vinnere: 36, feil: 28 },
-    { navn: "Malin",    poeng: 57, riktige: 8,  vinnere: 33, feil: 31 },
-    { navn: "Hanne",    poeng: 56, riktige: 5,  vinnere: 41, feil: 26 },
-    { navn: "Ine",      poeng: 55, riktige: 5,  vinnere: 40, feil: 27 },
-    { navn: "Aage",     poeng: 54, riktige: 5,  vinnere: 39, feil: 28 },
-    { navn: "Ragnhild", poeng: 52, riktige: 8,  vinnere: 28, feil: 36 },
-    { navn: "Filip",    poeng: 50, riktige: 5,  vinnere: 35, feil: 32 },
-    { navn: "Max",      poeng: 48, riktige: 6,  vinnere: 30, feil: 36 },
-    { navn: "Marcus",   poeng: 47, riktige: 2,  vinnere: 41, feil: 29 },
-    { navn: "Berit",    poeng: 46, riktige: 4,  vinnere: 34, feil: 34 },
-    { navn: "Maddi",    poeng: 45, riktige: 2,  vinnere: 39, feil: 31 }
+    { navn: "Are",    poeng: 4, eks: 1, vin: 1, feil: 0, champion: "Argentina",  norgeK78: "vinner" },
+    { navn: "Linus",  poeng: 4, eks: 1, vin: 1, feil: 0, champion: "Frankrike",  norgeK78: "vinner" },
+    { navn: "Maddi",  poeng: 4, eks: 1, vin: 1, feil: 0, champion: "Frankrike",  norgeK78: "vinner" },
+    { navn: "Maia",   poeng: 4, eks: 1, vin: 1, feil: 0, champion: "Brasil",     norgeK78: "vinner" },
+    { navn: "Marcus", poeng: 4, eks: 1, vin: 1, feil: 0, champion: "England",    norgeK78: "vinner" },
+    { navn: "Max",    poeng: 4, eks: 1, vin: 1, feil: 0, champion: "Norge",      norgeK78: "uavgjort" },
+    { navn: "Filip",  poeng: 2, eks: 0, vin: 2, feil: 0, champion: "Frankrike",  norgeK78: "vinner" },
+    { navn: "Halvor", poeng: 2, eks: 0, vin: 2, feil: 0, champion: "Frankrike",  norgeK78: "vinner" },
+    { navn: "Ine",    poeng: 2, eks: 0, vin: 2, feil: 0, champion: "Frankrike",  norgeK78: "uavgjort" },
+    { navn: "Malin",  poeng: 2, eks: 0, vin: 2, feil: 0, champion: "Frankrike",  norgeK78: "vinner" },
+    { navn: "Sarah",  poeng: 2, eks: 0, vin: 2, feil: 0, champion: "Frankrike",  norgeK78: "vinner" },
+    { navn: "Tina",   poeng: 2, eks: 0, vin: 2, feil: 0, champion: "Frankrike",  norgeK78: "vinner" },
+    { navn: "Tobias", poeng: 2, eks: 0, vin: 2, feil: 0, champion: "Frankrike",  norgeK78: "vinner" },
+    { navn: "Hanne",  poeng: 1, eks: 0, vin: 1, feil: 1, champion: "Frankrike",  norgeK78: "tap" },
+    { navn: "Berit",  poeng: 0, eks: 0, vin: 0, feil: 2, champion: "Norge",      norgeK78: "uavgjort" }
+  ],
+
+  ikkeLeverte: ["Åge (ugyldig fil)", "Petter (ikke levert)", "Ragnhild (ikke levert)"],
+
+  championStats: [
+    { lag: "Frankrike 🇫🇷", antall: 10 },
+    { lag: "Norge 🇳🇴",     antall: 2  },
+    { lag: "Argentina 🇦🇷", antall: 1  },
+    { lag: "Brasil 🇧🇷",    antall: 1  },
+    { lag: "England 🏴󠁧󠁢󠁥󠁮󠁧󠁿",   antall: 1  }
+  ],
+
+  norgeK78: { vinner: 11, uavgjort: 3, tap: 1 },
+
+  spilteKamper: [
+    { kamp: "K73", hjemme: "Sør-Afrika", borte: "Canada",  resultat: "0-1" },
+    { kamp: "K76", hjemme: "Brasil",     borte: "Japan",   resultat: "2-1" }
   ]
 };
-
-/* ================================================================
-   STOPP HER. Ikke endre noe nedenfor denne linjen.
-   ================================================================ */
 </script>
 
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html {
-  background: #04130a;
-  min-height: 100%;
-}
-body {
-  background: #04130a;
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html, body {
+  background: #060e1f;
   font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
-  color: #fff;
+  color: #e8eef8;
   min-height: 100vh;
-  padding: 32px 16px 48px;
-}
-.page {
-  max-width: 860px;
-  margin: 0 auto;
 }
 
-/* HEADER */
-.header {
-  text-align: center;
-  padding: 40px 32px 32px;
-  background: linear-gradient(180deg, #0d2e17 0%, #071a0e 100%);
-  border-radius: 20px 20px 0 0;
-  border-bottom: 1px solid rgba(200,168,75,0.25);
+body { padding: 24px 16px 80px; }
+.page { max-width: 860px; margin: 0 auto; }
+
+/* ── HERO HEADER ── */
+.hero {
   position: relative;
+  border-radius: 20px;
   overflow: hidden;
+  margin-bottom: 4px;
+  background: linear-gradient(160deg, #0b1d42 0%, #091530 50%, #071226 100%);
+  border: 1px solid rgba(56, 139, 255, 0.18);
 }
-.header::before {
+.hero-svg-wrap {
+  width: 100%;
+  display: block;
+  position: relative;
+}
+.hero-svg-wrap svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.hero-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+}
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgba(80, 160, 255, 0.8);
+  margin-bottom: 6px;
+  text-shadow: 0 0 20px rgba(40, 100, 255, 0.6);
+}
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 8vw, 86px);
+  letter-spacing: 5px;
+  line-height: 0.9;
+  color: #fff;
+  text-shadow: 0 0 60px rgba(40, 120, 255, 0.5), 0 2px 0 rgba(0,0,0,0.5);
+}
+.hero-title em {
+  font-style: normal;
+  color: #4da6ff;
+}
+.hero-sub {
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-top: 10px;
+  font-weight: 600;
+}
+.hero-meta {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.hero-meta-item {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(80,160,255,0.15);
+  border-radius: 8px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.5);
+}
+.hero-meta-item span { color: #4da6ff; }
+
+/* ── STANDINGS TABLE ── */
+.standings {
+  background: linear-gradient(180deg, #071428 0%, #060e1f 100%);
+  border: 1px solid rgba(56, 139, 255, 0.12);
+  border-top: none;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 24px 14px;
+  border-bottom: 1px solid rgba(56,139,255,0.08);
+}
+.section-header-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+}
+
+.player-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 20px;
+  min-height: 58px;
+  border-bottom: 1px solid rgba(255,255,255,0.035);
+  position: relative;
+  transition: background 0.15s;
+  cursor: default;
+}
+.player-row:hover { background: rgba(80,140,255,0.04); }
+
+/* colored left accent */
+.player-row::before {
   content: '';
   position: absolute;
-  top: -60px; left: 50%;
-  transform: translateX(-50%);
-  width: 600px; height: 300px;
-  background: radial-gradient(ellipse, rgba(255,245,180,0.08) 0%, transparent 70%);
-  pointer-events: none;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
 }
-.badge {
-  display: inline-block;
-  background: #c8a84b; color: #071a0e;
-  font-weight: 700; font-size: 12px;
-  letter-spacing: 3px; text-transform: uppercase;
-  padding: 5px 18px; border-radius: 100px; margin-bottom: 12px;
-}
-.vm-title {
-  font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
-  font-size: clamp(36px, 6vw, 64px);
-  color: #fff; letter-spacing: 4px; line-height: 1;
-}
-.vm-sub {
-  font-size: 14px; color: rgba(255,255,255,0.4);
-  font-weight: 600; letter-spacing: 3px;
-  text-transform: uppercase; margin-top: 6px;
-}
-.meta-row {
-  display: flex; gap: 24px; justify-content: center; margin-top: 12px;
-}
-.meta-item {
-  font-size: 13px; color: rgba(255,255,255,0.45);
-  font-weight: 600; letter-spacing: 1px;
-}
-.meta-item span { color: #c8a84b; }
+.top-1::before { background: linear-gradient(180deg, #ffd700, #ffb300); }
+.top-2::before { background: linear-gradient(180deg, #c0cce0, #9aabb8); }
+.top-3::before { background: linear-gradient(180deg, #cd8f4a, #a06030); }
+.mid::before   { background: transparent; }
+.bot-1::before { background: rgba(220,60,60,0.55); }
+.bot-2::before { background: rgba(210,60,60,0.35); }
+.bot-3::before { background: rgba(200,60,60,0.2); }
 
-/* LEADER BOX */
-.leader-box {
-  background: linear-gradient(135deg, #0f2d18 0%, #0a1f10 100%);
-  border: 1.5px solid rgba(200,168,75,0.5);
-  padding: 28px 40px;
+/* background shimmer for top */
+.top-1 { background: rgba(255,215,0,0.04); }
+.top-2 { background: rgba(192,204,224,0.025); }
+.top-3 { background: rgba(205,143,74,0.03); }
+.bot-1 { background: rgba(200,50,50,0.04); }
+
+/* progress bar bg */
+.row-prog {
+  position: absolute;
+  left: 3px; top: 0; bottom: 0;
+  opacity: 0.06;
+  pointer-events: none;
+  transition: width 0.7s ease;
+}
+.top-1 .row-prog { background: #ffd700; }
+.top-2 .row-prog { background: #c0cce0; }
+.top-3 .row-prog { background: #cd8f4a; }
+.mid   .row-prog { background: #3a78ff; }
+.bot-1 .row-prog, .bot-2 .row-prog, .bot-3 .row-prog { background: #cc3333; }
+
+.medal-col {
+  font-size: 22px;
+  min-width: 34px;
   text-align: center;
-  position: relative; overflow: hidden;
-}
-.leader-box::after {
-  content: '';
-  position: absolute; top: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 80%; height: 100%;
-  background: radial-gradient(ellipse at 50% 0%, rgba(200,168,75,0.12) 0%, transparent 65%);
-  pointer-events: none;
-}
-.leader-label {
-  font-size: 11px; color: #c8a84b;
-  letter-spacing: 5px; text-transform: uppercase;
-  font-weight: 700; margin-bottom: 4px; position: relative; z-index: 1;
-}
-.leader-name {
-  font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
-  font-size: clamp(48px, 7vw, 80px);
-  color: #c8a84b; letter-spacing: 5px; line-height: 0.9;
-  position: relative; z-index: 1;
-}
-.leader-score {
-  font-size: 16px; color: rgba(200,168,75,0.65);
-  font-weight: 600; margin-top: 4px; position: relative; z-index: 1;
-}
-
-/* LEADERBOARD TABLE */
-.leaderboard-wrap {
-  background: #071a0e;
-  padding: 0 0 8px;
-}
-.player-row {
-  display: flex; align-items: center; gap: 16px;
-  padding: 14px 28px;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
   position: relative;
-  animation: fadeUp 0.4s ease both;
+  z-index: 1;
+  line-height: 1;
 }
-@keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
-.player-row:nth-child(n) { animation-delay: calc(var(--i) * 0.04s); }
-
-/* Progress bar behind row */
-.row-progress {
-  position: absolute; left: 0; top: 0; height: 100%;
-  opacity: 0.06; pointer-events: none;
-  transition: width 0.6s ease;
-}
-.rank-1 .row-progress { background: #c8a84b; }
-.rank-2 .row-progress { background: #b0b0be; }
-.rank-3 .row-progress { background: #a06432; }
-.rank-other .row-progress { background: #4a7a5a; }
-
-/* Row backgrounds */
-.rank-1 { background: rgba(200,168,75,0.06); border-left: 3px solid #c8a84b; }
-.rank-2 { background: rgba(180,180,200,0.04); border-left: 3px solid rgba(180,180,200,0.4); }
-.rank-3 { background: rgba(160,100,50,0.04); border-left: 3px solid rgba(160,100,50,0.4); }
-.rank-other { border-left: 3px solid transparent; }
-
-.rank-num {
-  font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
-  font-size: 22px; min-width: 32px; text-align: center;
-  color: rgba(255,255,255,0.2); position: relative; z-index: 1;
-}
-.rank-1 .rank-num { color: #c8a84b; }
-.rank-2 .rank-num { color: #c0c0cc; }
-.rank-3 .rank-num { color: #a07850; }
-
-.medal-icon { font-size: 22px; min-width: 28px; position: relative; z-index: 1; }
-
-.player-info { flex: 1; position: relative; z-index: 1; min-width: 0; }
 .player-name {
-  font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
-  font-size: 28px; letter-spacing: 2px; line-height: 1;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.rank-1 .player-name { color: #c8a84b; }
-.rank-2 .player-name { color: #d0d0dc; }
-.rank-3 .player-name { color: #c09060; }
-.rank-other .player-name { color: rgba(255,255,255,0.75); }
+.top-1 .player-name { color: #ffd700; }
+.top-2 .player-name { color: #ccd8ea; }
+.top-3 .player-name { color: #d09a60; }
+.mid   .player-name { color: #cad7ee; }
+.bot-1 .player-name,
+.bot-2 .player-name,
+.bot-3 .player-name { color: rgba(200,210,230,0.5); }
 
-.player-stats {
-  font-size: 11px; color: rgba(255,255,255,0.28);
-  font-weight: 600; margin-top: 2px; letter-spacing: 1px;
-}
-
-.score-col { text-align: right; position: relative; z-index: 1; min-width: 60px; }
-.player-pts {
-  font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
-  font-size: 36px; line-height: 1; letter-spacing: 1px;
-}
-.rank-1 .player-pts { color: #c8a84b; }
-.rank-2 .player-pts { color: #c0c0cc; }
-.rank-3 .player-pts { color: #c09060; }
-.rank-other .player-pts { color: rgba(255,255,255,0.6); }
-
-.pts-lbl {
-  font-size: 9px; color: rgba(255,255,255,0.25);
-  letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+.player-sub {
+  font-size: 11px;
+  color: rgba(160,185,230,0.28);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  margin-top: 1px;
 }
 
-/* FOOTER STATS */
-.footer {
-  display: flex; justify-content: space-around;
-  background: #04130a;
-  padding: 24px 32px;
-  border-top: 1px solid rgba(200,168,75,0.15);
+.score-area {
+  position: relative;
+  z-index: 1;
+  text-align: right;
+  min-width: 60px;
+}
+.pts-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: 1px;
+}
+.top-1 .pts-num { color: #ffd700; }
+.top-2 .pts-num { color: #c0cce0; }
+.top-3 .pts-num { color: #cd8f4a; }
+.mid   .pts-num { color: rgba(120,165,255,0.7); }
+.bot-1 .pts-num,
+.bot-2 .pts-num,
+.bot-3 .pts-num { color: rgba(210,80,80,0.6); }
+
+.pts-unit {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(160,185,220,0.2);
+  margin-top: -2px;
+}
+
+/* Not submitted */
+.ns-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.025);
+  border-left: 3px solid rgba(100,140,200,0.1);
+  color: rgba(160,185,220,0.25);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* ── STATS ── */
+.stats-wrap {
+  margin-top: 4px;
+  border: 1px solid rgba(56, 139, 255, 0.12);
+  border-top: none;
+  background: #050d1c;
+  border-radius: 0 0 18px 18px;
+  padding: 28px 24px 32px;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media(max-width: 580px) { .stats-grid { grid-template-columns: 1fr; } }
+
+.stat-card {
+  background: rgba(56, 100, 200, 0.06);
+  border: 1px solid rgba(56,139,255,0.1);
+  border-radius: 14px;
+  padding: 18px 20px;
+}
+.stat-card-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(80, 140, 255, 0.6);
+  margin-bottom: 14px;
+}
+
+/* champion bars */
+.c-row { display:flex; align-items:center; gap:10px; margin-bottom:7px; }
+.c-name { font-size:13px; font-weight:700; min-width:108px; color: rgba(210,225,255,0.8); }
+.c-bar-bg { flex:1; height:18px; border-radius:4px; background:rgba(255,255,255,0.05); overflow:hidden; }
+.c-bar    { height:100%; border-radius:4px; background:linear-gradient(90deg,#1a4ccc,#4da6ff); }
+.c-n { font-size:12px; font-weight:700; color:rgba(160,185,220,0.4); min-width:18px; text-align:right; }
+
+/* norway meter */
+.no-bar { display:flex; height:26px; border-radius:6px; overflow:hidden; margin-bottom:10px; }
+.no-seg { display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:rgba(255,255,255,0.8); }
+.no-win  { background:linear-gradient(90deg,#0e5c20,#1a8c35); }
+.no-draw { background:linear-gradient(90deg,#4a4a00,#7a7a00); }
+.no-loss { background:linear-gradient(90deg,#6a0e0e,#9a1a1a); }
+.no-legend { display:flex; flex-wrap:wrap; gap:12px; }
+.no-leg { display:flex; align-items:center; gap:5px; font-size:12px; font-weight:600; color:rgba(160,185,220,0.45); }
+.no-dot { width:9px; height:9px; border-radius:50%; }
+
+/* match results */
+.m-row {
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size:13px;
+}
+.m-row:last-of-type { border:none; }
+.m-badge { font-size:9px; letter-spacing:2px; color:rgba(100,140,255,0.4); font-weight:700; }
+.m-teams { color:rgba(180,200,240,0.55); flex:1; margin:0 10px; }
+.m-score { font-family:'Bebas Neue',sans-serif; font-size:22px; color:#4da6ff; letter-spacing:2px; }
+
+/* progress bar */
+.prog-row { display:flex; align-items:center; gap:10px; margin-top:14px; }
+.prog-bg { flex:1; height:7px; border-radius:4px; background:rgba(255,255,255,0.05); overflow:hidden; }
+.prog-fill { height:100%; border-radius:4px; background:linear-gradient(90deg,#1a4ccc,#4da6ff); }
+.prog-txt { font-size:12px; font-weight:700; color:#4da6ff; min-width:40px; text-align:right; }
+
+/* max points table */
+.mp-row {
+  display:flex; justify-content:space-between; font-size:13px;
+  padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.045);
+}
+.mp-row:last-child { border:none; font-size:14px; font-weight:700; margin-top:6px; }
+.mp-lbl { color:rgba(180,200,240,0.45); }
+.mp-val { color:#4da6ff; font-weight:700; }
+.mp-total { color:#ffd700 !important; font-family:'Bebas Neue',sans-serif; font-size:22px; }
+
+/* footer strip */
+.footer-strip {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 22px 24px;
+  background: #040b18;
+  border: 1px solid rgba(56,139,255,0.08);
+  border-top: none;
+  margin-top: -4px;
   border-radius: 0 0 20px 20px;
 }
-.foot-item { text-align: center; }
-.foot-val {
-  font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
-  font-size: 32px; color: #fff; letter-spacing: 1px; line-height: 1;
+.f-item { text-align:center; }
+.f-val {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:32px; letter-spacing:1px; line-height:1;
+  color:#4da6ff;
 }
-.foot-lbl {
-  font-size: 10px; color: rgba(255,255,255,0.3);
-  font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 2px;
+.f-lbl {
+  font-size:9px; font-weight:700; letter-spacing:3px;
+  text-transform:uppercase; color:rgba(160,185,220,0.25); margin-top:3px;
 }
-.foot-divider { width: 1px; background: rgba(255,255,255,0.07); align-self: stretch; }
 </style>
 
 <div class="page">
-  <div id="app"></div>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-svg-wrap">
+    <svg viewBox="0 0 860 310" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="bgGlow" cx="50%" cy="60%" r="65%">
+          <stop offset="0%"  stop-color="#0d2a6e" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#060e1f" stop-opacity="1"/>
+        </radialGradient>
+        <radialGradient id="spotLight" cx="50%" cy="0%" r="80%">
+          <stop offset="0%"  stop-color="#1a5aff" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#1a5aff" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="ballGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"  stop-color="#4da6ff" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="#4da6ff" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="softglow">
+          <feGaussianBlur stdDeviation="8" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <clipPath id="heroClip">
+          <rect width="860" height="260"/>
+        </clipPath>
+      </defs>
+
+      <!-- Background -->
+      <rect width="860" height="260" fill="url(#bgGlow)"/>
+      <rect width="860" height="260" fill="url(#spotLight)"/>
+
+      <!-- Stadium arc lines (subtle) -->
+      <g opacity="0.06" stroke="#4da6ff" stroke-width="1" fill="none">
+        <ellipse cx="430" cy="260" rx="600" ry="200"/>
+        <ellipse cx="430" cy="260" rx="480" ry="160"/>
+        <ellipse cx="430" cy="260" rx="360" ry="120"/>
+        <ellipse cx="430" cy="260" rx="240" ry="80"/>
+      </g>
+
+      <!-- Grid lines (like a pitch) -->
+      <g opacity="0.045" stroke="#6ab0ff" stroke-width="0.8" fill="none">
+        <!-- verticals -->
+        <line x1="86" y1="0" x2="86" y2="260"/>
+        <line x1="215" y1="0" x2="215" y2="260"/>
+        <line x1="430" y1="0" x2="430" y2="260"/>
+        <line x1="645" y1="0" x2="645" y2="260"/>
+        <line x1="774" y1="0" x2="774" y2="260"/>
+        <!-- horizontals -->
+        <line x1="0" y1="65" x2="860" y2="65"/>
+        <line x1="0" y1="130" x2="860" y2="130"/>
+        <line x1="0" y1="195" x2="860" y2="195"/>
+      </g>
+
+      <!-- Big glowing orb behind trophy -->
+      <circle cx="430" cy="130" r="110" fill="url(#ballGlow)"/>
+
+      <!-- Trophy SVG shape -->
+      <g transform="translate(361,18)" filter="url(#softglow)">
+        <!-- cup body -->
+        <path d="M69,30 L69,95 Q69,135 100,155 L100,170 L80,170 L80,185 L120,185 L120,170 L100,170" stroke="#4da6ff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M69,30 L69,95 Q69,135 100,155" stroke="#2280ff" stroke-width="2.5" fill="rgba(26,76,204,0.12)" stroke-linecap="round"/>
+        <path d="M131,30 L131,95 Q131,135 100,155 L100,170 L120,170 L120,185 L80,185 L80,170" stroke="#4da6ff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <!-- handles -->
+        <path d="M69,55 Q40,55 40,80 Q40,105 69,105" stroke="#4da6ff" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <path d="M131,55 Q160,55 160,80 Q160,105 131,105" stroke="#4da6ff" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <!-- top rim -->
+        <line x1="55" y1="30" x2="145" y2="30" stroke="#6abcff" stroke-width="3" stroke-linecap="round"/>
+        <!-- base -->
+        <rect x="72" y="185" width="56" height="8" rx="3" stroke="#4da6ff" stroke-width="1.5" fill="rgba(26,76,204,0.15)"/>
+        <!-- star above cup -->
+        <polygon points="100,2 104,14 116,14 107,22 110,34 100,27 90,34 93,22 84,14 96,14" fill="#ffd700" opacity="0.85" filter="url(#glow)"/>
+      </g>
+
+      <!-- Left decoration: football -->
+      <g transform="translate(68,88)" opacity="0.35">
+        <circle cx="36" cy="36" r="32" stroke="#4da6ff" stroke-width="1.5" fill="rgba(20,60,160,0.15)"/>
+        <!-- pentagon pattern simplified -->
+        <polygon points="36,10 48,20 44,34 28,34 24,20" stroke="#4da6ff" stroke-width="1.2" fill="rgba(26,80,200,0.2)"/>
+        <polygon points="56,46 66,36 62,22 50,24 44,34" stroke="#4da6ff" stroke-width="1.2" fill="rgba(26,80,200,0.2)"/>
+        <polygon points="56,46 50,58 36,62 24,54 28,42 44,34" stroke="#4da6ff" stroke-width="1.2" fill="rgba(26,80,200,0.2)"/>
+        <polygon points="10,48 16,36 24,34 28,42 22,54" stroke="#4da6ff" stroke-width="1.2" fill="rgba(26,80,200,0.2)"/>
+        <polygon points="20,22 28,20 36,10 24,4 12,14" stroke="#4da6ff" stroke-width="1.2" fill="rgba(26,80,200,0.2)"/>
+      </g>
+
+      <!-- Right decoration: bracket lines -->
+      <g transform="translate(680,50)" opacity="0.3" stroke="#4da6ff" stroke-width="1.5" fill="none" stroke-linecap="round">
+        <!-- bracket diagram -->
+        <line x1="0"   y1="20"  x2="30"  y2="20"/>
+        <line x1="0"   y1="50"  x2="30"  y2="50"/>
+        <line x1="30"  y1="20"  x2="30"  y2="50"/>
+        <line x1="30"  y1="35"  x2="60"  y2="35"/>
+
+        <line x1="0"   y1="80"  x2="30"  y2="80"/>
+        <line x1="0"   y1="110" x2="30"  y2="110"/>
+        <line x1="30"  y1="80"  x2="30"  y2="110"/>
+        <line x1="30"  y1="95"  x2="60"  y2="95"/>
+
+        <line x1="60"  y1="35"  x2="60"  y2="95"/>
+        <line x1="60"  y1="65"  x2="100" y2="65"/>
+
+        <line x1="0"   y1="130" x2="30"  y2="130"/>
+        <line x1="0"   y1="160" x2="30"  y2="160"/>
+        <line x1="30"  y1="130" x2="30"  y2="160"/>
+        <line x1="30"  y1="145" x2="60"  y2="145"/>
+
+        <line x1="60"  y1="95"  x2="60"  y2="145"/>
+        <line x1="60"  y1="120" x2="100" y2="120"/>
+        <line x1="100" y1="65"  x2="100" y2="120"/>
+        <line x1="100" y1="92"  x2="140" y2="92"/>
+        <!-- trophy dot at end -->
+        <circle cx="145" cy="92" r="4" fill="#ffd700" stroke="#ffd700" opacity="0.8"/>
+      </g>
+
+      <!-- Stars scattered -->
+      <g fill="#4da6ff" opacity="0.18">
+        <circle cx="160" cy="30" r="1.2"/>
+        <circle cx="340" cy="18" r="0.9"/>
+        <circle cx="520" cy="22" r="1.4"/>
+        <circle cx="700" cy="15" r="1"/>
+        <circle cx="800" cy="40" r="1.2"/>
+        <circle cx="60"  cy="160" r="0.8"/>
+        <circle cx="820" cy="180" r="1"/>
+        <circle cx="260" cy="240" r="0.9"/>
+        <circle cx="600" cy="245" r="1.1"/>
+      </g>
+
+      <!-- Bottom fade -->
+      <rect width="860" height="60" y="250" fill="url(#bgGlow)" opacity="0.6"/>
+    </svg>
+  </div>
+
+  <div class="hero-text">
+    <div class="hero-eyebrow">⚡ VM 2026 — Sluttspill</div>
+    <div class="hero-title">MAIHAUGEN<br><em>PLAYOFFS</em></div>
+    <div class="hero-sub">16-delsfinale · Kvartfinale · Semifinale · Finale</div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">📅 <span id="dato"></span></div>
+      <div class="hero-meta-item">Kamper: <span id="kampMeta"></span></div>
+    </div>
+  </div>
 </div>
 
+<!-- ── STANDINGS ── -->
+<div class="standings" id="standingsWrap">
+  <div class="section-header">
+    <div class="section-header-title">🏆 Stillinger</div>
+  </div>
+  <div id="playerList"></div>
+</div>
+
+<!-- ── STATS ── -->
+<div class="stats-wrap">
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:4px;color:rgba(80,140,255,0.5);margin-bottom:18px;">STATISTIKK</div>
+  <div class="stats-grid" id="statsGrid"></div>
+</div>
+
+<!-- ── FOOTER ── -->
+<div class="footer-strip" id="footerStrip"></div>
+
 <script>
-const sorted   = [...DATA.deltakere].sort((a, b) => b.poeng - a.poeng);
-const maxPoeng = sorted[0]?.poeng || 1;
-const medals   = ['🥇','🥈','🥉'];
+(function() {
+  const d = DATA;
 
-function rankClass(i) {
-  if (i === 0) return 'rank-1';
-  if (i === 1) return 'rank-2';
-  if (i === 2) return 'rank-3';
-  return 'rank-other';
-}
+  document.getElementById('dato').textContent = d.oppdatert;
+  document.getElementById('kampMeta').innerHTML = `<span>${d.kamperSpilt} / ${d.totaleKamper}</span>`;
 
-function rankLabel(i) {
-  return medals[i] ?? `${i + 1}.`;
-}
+  const sorted = [...d.deltakere].sort((a,b) => b.poeng - a.poeng || a.navn.localeCompare(b.navn, 'no'));
+  const total = sorted.length;
 
-const gap = sorted.length > 1 ? sorted[0].poeng - sorted[1].poeng : 0;
-const pct  = DATA.totaleKamper > 0 ? Math.round(DATA.kamperSpilt / DATA.totaleKamper * 100) : 0;
-const startDate = new Date(2026, 5, 11); // 11. juni 2026, lokal tid
-const today = new Date();
-today.setHours(0,0,0,0);
-const dagNr = Math.floor((today - startDate) / (1000*60*60*24)) + 1;
+  // Rank assignment (tied = same rank)
+  function getRanks(arr) {
+    const ranks = [];
+    let r = 1;
+    for (let i = 0; i < arr.length; i++) {
+      if (i > 0 && arr[i].poeng === arr[i-1].poeng) {
+        ranks.push(ranks[i-1]);
+      } else {
+        ranks.push(r);
+      }
+      r = i + 2;
+    }
+    return ranks;
+  }
+  const ranks = getRanks(sorted);
+  const uniqueRanks = [...new Set(ranks)].sort((a,b)=>a-b);
 
-document.getElementById('app').innerHTML = `
-  <div class="header">
-    <div class="badge">⚽ VM 2026</div>
-    <div class="vm-title">MAIHAUGEN TIPPEKONKURRANSE</div>
-    <div class="vm-sub">Gruppespill</div>
-    <div class="meta-row">
-      <div class="meta-item">📅 <span>${DATA.dato}</span></div>
-      <div class="meta-item">Dag <span>${dagNr}</span></div>
-    </div>
-  </div>
+  function rowClass(rank) {
+    if (rank === uniqueRanks[0]) return 'top-1';
+    if (uniqueRanks[1] !== undefined && rank === uniqueRanks[1]) return 'top-2';
+    if (uniqueRanks[2] !== undefined && rank === uniqueRanks[2]) return 'top-3';
+    const last = uniqueRanks[uniqueRanks.length-1];
+    const sLast = uniqueRanks[uniqueRanks.length-2];
+    const tLast = uniqueRanks[uniqueRanks.length-3];
+    if (rank === last) return 'bot-1';
+    if (rank === sLast) return 'bot-2';
+    if (rank === tLast) return 'bot-3';
+    return 'mid';
+  }
 
-  <div class="leader-box">
-    <div class="leader-label">⚡ Dagens leder</div>
-    <div class="leader-name">${sorted[0].navn}</div>
-    <div class="leader-score">${sorted[0].poeng} poeng &nbsp;·&nbsp; ${sorted[0].riktige} korrekte resultater</div>
-  </div>
+  function medalEmoji(rc) {
+    const map = { 'top-1':'🏆','top-2':'🥈','top-3':'🥉','bot-1':'💀','bot-2':'😰','bot-3':'😬','mid':'' };
+    return map[rc] || '';
+  }
 
-  <div class="leaderboard-wrap">
-    ${sorted.map((d, i) => `
-      <div class="player-row ${rankClass(i)}" style="--i:${i}">
-        <div class="row-progress" style="width:${maxPoeng > 0 ? Math.round(d.poeng / maxPoeng * 100) : 0}%"></div>
-        <div class="rank-num">${i + 1}</div>
-        <div class="medal-icon">${rankLabel(i)}</div>
-        <div class="player-info">
-          <div class="player-name">${d.navn}</div>
-          <div class="player-stats">✓ ${d.riktige} riktige &nbsp;·&nbsp; ~ ${d.vinnere} vinnere &nbsp;·&nbsp; ✗ ${d.feil} feil</div>
+  const maxPts = sorted[0]?.poeng || 1;
+
+  // Player rows
+  const playerHTML = sorted.map((p, i) => {
+    const rc = rowClass(ranks[i]);
+    const progPct = maxPts > 0 ? Math.round(p.poeng / maxPts * 100) : 0;
+    const med = medalEmoji(rc);
+    return `
+      <div class="player-row ${rc}">
+        <div class="row-prog" style="width:${progPct}%"></div>
+        <div class="medal-col">${med}</div>
+        <div style="flex:1;min-width:0;position:relative;z-index:1;padding:0 12px">
+          <div class="player-name">${p.navn}</div>
+          <div class="player-sub">✓ ${p.eks} eks &nbsp;·&nbsp; ~ ${p.vin} vinner &nbsp;·&nbsp; ✗ ${p.feil} feil &nbsp;·&nbsp; 🏆 ${p.champion}</div>
         </div>
-        <div class="score-col">
-          <div class="player-pts">${d.poeng}</div>
-          <div class="pts-lbl">poeng</div>
+        <div class="score-area">
+          <div class="pts-num">${p.poeng}</div>
+          <div class="pts-unit">poeng</div>
         </div>
       </div>
-    `).join('')}
-  </div>
+    `;
+  }).join('');
 
-  <div class="footer">
-    <div class="foot-item">
-      <div class="foot-val">${DATA.kamperSpilt} / ${DATA.totaleKamper}</div>
-      <div class="foot-lbl">Kamper spilt</div>
+  const nsHTML = d.ikkeLeverte.map(n => `
+    <div class="ns-row">⏳ &nbsp;${n}</div>
+  `).join('');
+
+  document.getElementById('playerList').innerHTML = playerHTML + nsHTML;
+
+  // ── STATS ──
+  const champMax = Math.max(...d.championStats.map(c=>c.antall));
+  const champHTML = d.championStats.map(c => `
+    <div class="c-row">
+      <div class="c-name">${c.lag}</div>
+      <div class="c-bar-bg"><div class="c-bar" style="width:${Math.round(c.antall/champMax*100)}%"></div></div>
+      <div class="c-n">${c.antall}</div>
     </div>
-    <div class="foot-divider"></div>
-    <div class="foot-item">
-      <div class="foot-val">${DATA.totaleKamper - DATA.kamperSpilt}</div>
-      <div class="foot-lbl">Gjenstår</div>
+  `).join('');
+
+  const nTotal = d.norgeK78.vinner + d.norgeK78.uavgjort + d.norgeK78.tap;
+  const winP  = Math.round(d.norgeK78.vinner   / nTotal * 100);
+  const drawP = Math.round(d.norgeK78.uavgjort / nTotal * 100);
+  const lossP = 100 - winP - drawP;
+
+  const matchHTML = d.spilteKamper.map(m => `
+    <div class="m-row">
+      <div class="m-badge">${m.kamp}</div>
+      <div class="m-teams">${m.hjemme} – ${m.borte}</div>
+      <div class="m-score">${m.resultat}</div>
     </div>
-    <div class="foot-divider"></div>
-    <div class="foot-item">
-      <div class="foot-val">${gap}</div>
-      <div class="foot-lbl">Poeng gap</div>
+  `).join('');
+
+  const progTotal = Math.round(d.kamperSpilt / d.totaleKamper * 100);
+
+  document.getElementById('statsGrid').innerHTML = `
+    <div class="stat-card">
+      <div class="stat-card-label">🏆 VM-vinner – hvem tror folk?</div>
+      ${champHTML}
     </div>
-    <div class="foot-divider"></div>
-    <div class="foot-item">
-      <div class="foot-val">${pct}%</div>
-      <div class="foot-lbl">Ferdig</div>
+
+    <div class="stat-card">
+      <div class="stat-card-label">🇳🇴 K78 – Elfenbenskysten vs Norge</div>
+      <div style="font-size:12px;color:rgba(160,185,220,0.3);margin-bottom:10px;">Hvem tror tipperne vinner?</div>
+      <div class="no-bar">
+        <div class="no-seg no-win"  style="width:${winP}%">${winP>12?winP+'%':''}</div>
+        <div class="no-seg no-draw" style="width:${drawP}%">${drawP>12?drawP+'%':''}</div>
+        <div class="no-seg no-loss" style="width:${lossP}%">${lossP>12?lossP+'%':''}</div>
+      </div>
+      <div class="no-legend">
+        <div class="no-leg"><div class="no-dot" style="background:#1a8c35"></div>Norge vinner: <strong style="color:rgba(200,230,200,0.6)">${d.norgeK78.vinner}</strong></div>
+        <div class="no-leg"><div class="no-dot" style="background:#7a7a00"></div>Uavgjort: <strong style="color:rgba(220,220,160,0.6)">${d.norgeK78.uavgjort}</strong></div>
+        <div class="no-leg"><div class="no-dot" style="background:#9a1a1a"></div>Elfenbenskysten: <strong style="color:rgba(230,170,170,0.6)">${d.norgeK78.tap}</strong></div>
+      </div>
     </div>
-  </div>
-`;
+
+    <div class="stat-card">
+      <div class="stat-card-label">⚽ Spilte kamper</div>
+      ${matchHTML}
+      <div class="prog-row">
+        <div style="font-size:11px;color:rgba(160,185,220,0.3);min-width:55px;">Fremdrift</div>
+        <div class="prog-bg"><div class="prog-fill" style="width:${progTotal}%"></div></div>
+        <div class="prog-txt">${progTotal}%</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-card-label">🎯 Maks mulige poeng</div>
+      <div class="mp-row"><span class="mp-lbl">16-delsfinalene (16×3p)</span><span class="mp-val">48 p</span></div>
+      <div class="mp-row"><span class="mp-lbl">Kvartfinale (8 lag × 2p)</span><span class="mp-val">16 p</span></div>
+      <div class="mp-row"><span class="mp-lbl">Semifinale (4 lag × 3p)</span><span class="mp-val">12 p</span></div>
+      <div class="mp-row"><span class="mp-lbl">Finale (2 lag × 5p)</span><span class="mp-val">10 p</span></div>
+      <div class="mp-row"><span class="mp-lbl">Bronsefinale (2 lag × 2p)</span><span class="mp-val">4 p</span></div>
+      <div class="mp-row"><span class="mp-lbl">VM-vinner (8p)</span><span class="mp-val">8 p</span></div>
+      <div class="mp-row" style="border-top:1px solid rgba(255,255,255,0.07);padding-top:10px;margin-top:6px;">
+        <span style="color:#e8eef8;font-weight:700;">TOTALT MAKS</span>
+        <span class="mp-total">98 p</span>
+      </div>
+    </div>
+  `;
+
+  // Footer
+  const span = sorted[0].poeng - sorted[sorted.length-1].poeng;
+  document.getElementById('footerStrip').innerHTML = `
+    <div class="f-item"><div class="f-val">${d.kamperSpilt}/${d.totaleKamper}</div><div class="f-lbl">Kamper spilt</div></div>
+    <div class="f-item"><div class="f-val">${d.totaleKamper - d.kamperSpilt}</div><div class="f-lbl">Gjenstår</div></div>
+    <div class="f-item"><div class="f-val">${span}</div><div class="f-lbl">Poengspenn</div></div>
+    <div class="f-item"><div class="f-val" style="color:#ffd700">98</div><div class="f-lbl">Maks poeng</div></div>
+  `;
+})();
 </script>
 </body>
 </html>
