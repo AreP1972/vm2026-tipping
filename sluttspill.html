@@ -17,32 +17,33 @@ const DATA = {
   kamperSpilt: 8,
   totaleKamper: 16,
   deltakere: [
-    { navn: "Are", poeng: 12, eks: 3, vin: 3, feil: 2, champion: "Argentina", norgeK78: "vinner" },
-    { navn: "Åge", poeng: 11, eks: 3, vin: 2, feil: 3, champion: "Argentina", norgeK78: "vinner" },
-    { navn: "Berit", poeng: 10, eks: 3, vin: 1, feil: 4, champion: "Norge", norgeK78: "uavgjort" },
-    { navn: "Filip", poeng: 10, eks: 2, vin: 4, feil: 2, champion: "Frankrike", norgeK78: "vinner" },
-    { navn: "Sarah", poeng: 10, eks: 2, vin: 4, feil: 2, champion: "Frankrike", norgeK78: "vinner" },
-    { navn: "Tobias", poeng: 10, eks: 2, vin: 4, feil: 2, champion: "Frankrike", norgeK78: "vinner" },
-    { navn: "Linus", poeng: 9, eks: 2, vin: 3, feil: 3, champion: "Frankrike", norgeK78: "vinner" },
-    { navn: "Ine", poeng: 8, eks: 1, vin: 5, feil: 2, champion: "Frankrike", norgeK78: "uavgjort" },
-    { navn: "Maia", poeng: 8, eks: 1, vin: 5, feil: 2, champion: "Brasil", norgeK78: "vinner" },
-    { navn: "Malin", poeng: 8, eks: 1, vin: 5, feil: 2, champion: "Frankrike", norgeK78: "vinner" },
-    { navn: "Marcus", poeng: 8, eks: 1, vin: 5, feil: 2, champion: "England", norgeK78: "vinner" },
-    { navn: "Hanne", poeng: 7, eks: 1, vin: 4, feil: 3, champion: "Frankrike", norgeK78: "tap" },
-    { navn: "Maddi", poeng: 7, eks: 1, vin: 4, feil: 3, champion: "Frankrike", norgeK78: "vinner" },
-    { navn: "Max", poeng: 7, eks: 1, vin: 4, feil: 3, champion: "Norge", norgeK78: "uavgjort" },
-    { navn: "Tina", poeng: 6, eks: 0, vin: 6, feil: 2, champion: "Frankrike", norgeK78: "vinner" },
-    { navn: "Halvor", poeng: 5, eks: 0, vin: 5, feil: 3, champion: "Frankrike", norgeK78: "vinner" }
+    { navn: "Are", poeng: 12, eks: 3, vin: 3, feil: 2, champion: "Argentina" },
+    { navn: "Åge", poeng: 11, eks: 3, vin: 2, feil: 3, champion: "Argentina" },
+    { navn: "Berit", poeng: 10, eks: 3, vin: 1, feil: 4, champion: "Norge" },
+    { navn: "Filip", poeng: 10, eks: 2, vin: 4, feil: 2, champion: "Frankrike" },
+    { navn: "Sarah", poeng: 10, eks: 2, vin: 4, feil: 2, champion: "Frankrike" },
+    { navn: "Tobias", poeng: 10, eks: 2, vin: 4, feil: 2, champion: "Frankrike" },
+    { navn: "Linus", poeng: 9, eks: 2, vin: 3, feil: 3, champion: "Frankrike" },
+    { navn: "Ine", poeng: 8, eks: 1, vin: 5, feil: 2, champion: "Frankrike" },
+    { navn: "Maia", poeng: 8, eks: 1, vin: 5, feil: 2, champion: "Brasil" },
+    { navn: "Malin", poeng: 8, eks: 1, vin: 5, feil: 2, champion: "Frankrike" },
+    { navn: "Marcus", poeng: 8, eks: 1, vin: 5, feil: 2, champion: "England" },
+    { navn: "Hanne", poeng: 7, eks: 1, vin: 4, feil: 3, champion: "Frankrike" },
+    { navn: "Maddi", poeng: 7, eks: 1, vin: 4, feil: 3, champion: "Frankrike" },
+    { navn: "Max", poeng: 7, eks: 1, vin: 4, feil: 3, champion: "Norge" },
+    { navn: "Tina", poeng: 6, eks: 0, vin: 6, feil: 2, champion: "Frankrike" },
+    { navn: "Halvor", poeng: 5, eks: 0, vin: 5, feil: 3, champion: "Frankrike" }
   ],
   ikkeLeverte: ["Petter (ikke levert)", "Ragnhild (ikke levert)"],
   championStats: [
-    { lag: "Frankrike 🇫🇷", antall: 10  },
-    { lag: "Argentina 🇦🇷", antall: 2  },
-    { lag: "Norge 🇳🇴", antall: 2  },
-    { lag: "Brasil 🇧🇷", antall: 1  },
-    { lag: "England 🏴󠁧󠁢󠁥󠁮󠁧󠁿", antall: 1  }
+    { lag: "Frankrike 🇫🇷", antall: 10 },
+    { lag: "Argentina 🇦🇷", antall: 2 },
+    { lag: "Norge 🇳🇴", antall: 2 },
+    { lag: "Brasil 🇧🇷", antall: 1 },
+    { lag: "England 🏴󠁧󠁢󠁥󠁮󠁧󠁿", antall: 1 }
   ],
-  norgeK78: { vinner: 12, uavgjort: 3, tap: 1 },
+  usaK81: { vinner: 13, uavgjort: 2, tap: 1 },
+  belgiaK82: { vinner: 9, uavgjort: 2, tap: 5 },
   spilteKamper: [
     { kamp: "Kamp 73", hjemme: "Sør-Afrika", borte: "Canada", resultat: "0-1" },
     { kamp: "Kamp 74", hjemme: "Tyskland", borte: "Paraguay", resultat: "1-1" },
@@ -594,11 +595,6 @@ body { padding: 24px 16px 80px; }
     </div>
   `).join('');
 
-  const nTotal = d.norgeK78.vinner + d.norgeK78.uavgjort + d.norgeK78.tap;
-  const winP  = Math.round(d.norgeK78.vinner   / nTotal * 100);
-  const drawP = Math.round(d.norgeK78.uavgjort / nTotal * 100);
-  const lossP = 100 - winP - drawP;
-
   const matchHTML = d.spilteKamper.map(m => `
     <div class="m-row">
       <div class="m-badge">${m.kamp}</div>
@@ -615,20 +611,49 @@ body { padding: 24px 16px 80px; }
       ${champHTML}
     </div>
 
-    <div class="stat-card">
-      <div class="stat-card-label">🇳🇴 K78 – Elfenbenskysten vs Norge</div>
-      <div style="font-size:12px;color:rgba(160,185,220,0.3);margin-bottom:10px;">Hvem tror tipperne vinner?</div>
-      <div class="no-bar">
-        <div class="no-seg no-win"  style="width:${winP}%">${winP>12?winP+'%':''}</div>
-        <div class="no-seg no-draw" style="width:${drawP}%">${drawP>12?drawP+'%':''}</div>
-        <div class="no-seg no-loss" style="width:${lossP}%">${lossP>12?lossP+'%':''}</div>
-      </div>
-      <div class="no-legend">
-        <div class="no-leg"><div class="no-dot" style="background:#1a8c35"></div>Norge vinner: <strong style="color:rgba(200,230,200,0.6)">${d.norgeK78.vinner}</strong></div>
-        <div class="no-leg"><div class="no-dot" style="background:#7a7a00"></div>Uavgjort: <strong style="color:rgba(220,220,160,0.6)">${d.norgeK78.uavgjort}</strong></div>
-        <div class="no-leg"><div class="no-dot" style="background:#9a1a1a"></div>Elfenbenskysten: <strong style="color:rgba(230,170,170,0.6)">${d.norgeK78.tap}</strong></div>
-      </div>
-    </div>
+    ${(()=>{
+      const u = d.usaK81;
+      const tot = u.vinner + u.uavgjort + u.tap;
+      const vP = Math.round(u.vinner / tot * 100);
+      const uP = Math.round(u.uavgjort / tot * 100);
+      const tP = 100 - vP - uP;
+      return `<div class="stat-card">
+        <div class="stat-card-label">🇺🇸 K81 – USA vs Bosnia-Herz.</div>
+        <div style="font-size:12px;color:rgba(160,185,220,0.3);margin-bottom:10px;">Hvem tror tipperne vinner?</div>
+        <div class="no-bar">
+          <div class="no-seg no-win"  style="width:${vP}%">${vP>12?vP+'%':''}</div>
+          <div class="no-seg no-draw" style="width:${uP}%">${uP>12?uP+'%':''}</div>
+          <div class="no-seg no-loss" style="width:${tP}%">${tP>12?tP+'%':''}</div>
+        </div>
+        <div class="no-legend">
+          <div class="no-leg"><div class="no-dot" style="background:#1a8c35"></div>USA vinner: <strong style="color:rgba(200,230,200,0.6)">${u.vinner}</strong></div>
+          <div class="no-leg"><div class="no-dot" style="background:#7a7a00"></div>Uavgjort: <strong style="color:rgba(220,220,160,0.6)">${u.uavgjort}</strong></div>
+          <div class="no-leg"><div class="no-dot" style="background:#9a1a1a"></div>Bosnia vinner: <strong style="color:rgba(230,170,170,0.6)">${u.tap}</strong></div>
+        </div>
+      </div>`;
+    })()}
+
+    ${(()=>{
+      const b = d.belgiaK82;
+      const tot = b.vinner + b.uavgjort + b.tap;
+      const vP = Math.round(b.vinner / tot * 100);
+      const uP = Math.round(b.uavgjort / tot * 100);
+      const tP = 100 - vP - uP;
+      return `<div class="stat-card">
+        <div class="stat-card-label">🇧🇪 K82 – Belgia vs Senegal</div>
+        <div style="font-size:12px;color:rgba(160,185,220,0.3);margin-bottom:10px;">Hvem tror tipperne vinner?</div>
+        <div class="no-bar">
+          <div class="no-seg no-win"  style="width:${vP}%">${vP>12?vP+'%':''}</div>
+          <div class="no-seg no-draw" style="width:${uP}%">${uP>12?uP+'%':''}</div>
+          <div class="no-seg no-loss" style="width:${tP}%">${tP>12?tP+'%':''}</div>
+        </div>
+        <div class="no-legend">
+          <div class="no-leg"><div class="no-dot" style="background:#1a8c35"></div>Belgia vinner: <strong style="color:rgba(200,230,200,0.6)">${b.vinner}</strong></div>
+          <div class="no-leg"><div class="no-dot" style="background:#7a7a00"></div>Uavgjort: <strong style="color:rgba(220,220,160,0.6)">${b.uavgjort}</strong></div>
+          <div class="no-leg"><div class="no-dot" style="background:#9a1a1a"></div>Senegal vinner: <strong style="color:rgba(230,170,170,0.6)">${b.tap}</strong></div>
+        </div>
+      </div>`;
+    })()}
 
     <div class="stat-card">
       <div class="stat-card-label">⚽ Spilte kamper</div>
