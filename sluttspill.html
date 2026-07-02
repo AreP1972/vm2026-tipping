@@ -13,37 +13,36 @@
 
 <script id="DATA_BLOCK">
 const DATA = {
-  oppdatert: "1. juli 2026",
-  kamperSpilt: 8,
+  oppdatert: "2. juli 2026",
+  kamperSpilt: 10,
   totaleKamper: 16,
   deltakere: [
-    { navn: "Are", poeng: 12, eks: 3, vin: 3, feil: 2, champion: "Argentina" },
-    { navn: "Åge", poeng: 11, eks: 3, vin: 2, feil: 3, champion: "Argentina" },
-    { navn: "Berit", poeng: 10, eks: 3, vin: 1, feil: 4, champion: "Norge" },
-    { navn: "Filip", poeng: 10, eks: 2, vin: 4, feil: 2, champion: "Frankrike" },
-    { navn: "Sarah", poeng: 10, eks: 2, vin: 4, feil: 2, champion: "Frankrike" },
-    { navn: "Tobias", poeng: 10, eks: 2, vin: 4, feil: 2, champion: "Frankrike" },
-    { navn: "Linus", poeng: 9, eks: 2, vin: 3, feil: 3, champion: "Frankrike" },
-    { navn: "Ine", poeng: 8, eks: 1, vin: 5, feil: 2, champion: "Frankrike" },
-    { navn: "Maia", poeng: 8, eks: 1, vin: 5, feil: 2, champion: "Brasil" },
-    { navn: "Malin", poeng: 8, eks: 1, vin: 5, feil: 2, champion: "Frankrike" },
-    { navn: "Marcus", poeng: 8, eks: 1, vin: 5, feil: 2, champion: "England" },
-    { navn: "Hanne", poeng: 7, eks: 1, vin: 4, feil: 3, champion: "Frankrike" },
-    { navn: "Maddi", poeng: 7, eks: 1, vin: 4, feil: 3, champion: "Frankrike" },
-    { navn: "Max", poeng: 7, eks: 1, vin: 4, feil: 3, champion: "Norge" },
-    { navn: "Tina", poeng: 6, eks: 0, vin: 6, feil: 2, champion: "Frankrike" },
-    { navn: "Halvor", poeng: 5, eks: 0, vin: 5, feil: 3, champion: "Frankrike" }
+    { navn: "Are", poeng: 14, eks: 3, vin: 5, feil: 2, champion: "Argentina", norgeK78: "vinner" },
+    { navn: "Tobias", poeng: 14, eks: 3, vin: 5, feil: 2, champion: "Frankrike", norgeK78: "vinner" },
+    { navn: "Åge", poeng: 12, eks: 3, vin: 3, feil: 4, champion: "Argentina", norgeK78: "vinner" },
+    { navn: "Maia", poeng: 12, eks: 2, vin: 6, feil: 2, champion: "Brasil", norgeK78: "vinner" },
+    { navn: "Filip", poeng: 11, eks: 2, vin: 5, feil: 3, champion: "Frankrike", norgeK78: "vinner" },
+    { navn: "Sarah", poeng: 11, eks: 2, vin: 5, feil: 3, champion: "Frankrike", norgeK78: "vinner" },
+    { navn: "Berit", poeng: 10, eks: 3, vin: 1, feil: 6, champion: "Norge", norgeK78: "uavgjort" },
+    { navn: "Linus", poeng: 10, eks: 2, vin: 4, feil: 4, champion: "Frankrike", norgeK78: "vinner" },
+    { navn: "Malin", poeng: 10, eks: 1, vin: 7, feil: 2, champion: "Frankrike", norgeK78: "vinner" },
+    { navn: "Marcus", poeng: 10, eks: 1, vin: 7, feil: 2, champion: "England", norgeK78: "vinner" },
+    { navn: "Max", poeng: 10, eks: 2, vin: 4, feil: 4, champion: "Norge", norgeK78: "uavgjort" },
+    { navn: "Tina", poeng: 10, eks: 1, vin: 7, feil: 2, champion: "Frankrike", norgeK78: "vinner" },
+    { navn: "Hanne", poeng: 9, eks: 1, vin: 6, feil: 3, champion: "Frankrike", norgeK78: "tap" },
+    { navn: "Ine", poeng: 9, eks: 1, vin: 6, feil: 3, champion: "Frankrike", norgeK78: "uavgjort" },
+    { navn: "Maddi", poeng: 8, eks: 1, vin: 5, feil: 4, champion: "Frankrike", norgeK78: "vinner" },
+    { navn: "Halvor", poeng: 6, eks: 0, vin: 6, feil: 4, champion: "Frankrike", norgeK78: "vinner" }
   ],
   ikkeLeverte: ["Petter (ikke levert)", "Ragnhild (ikke levert)"],
   championStats: [
-    { lag: "Frankrike 🇫🇷", antall: 10 },
-    { lag: "Argentina 🇦🇷", antall: 2 },
-    { lag: "Norge 🇳🇴", antall: 2 },
-    { lag: "Brasil 🇧🇷", antall: 1 },
-    { lag: "England 🏴󠁧󠁢󠁥󠁮󠁧󠁿", antall: 1 }
+    { lag: "Frankrike 🇫🇷", antall: 10  },
+    { lag: "Argentina 🇦🇷", antall: 2  },
+    { lag: "Norge 🇳🇴", antall: 2  },
+    { lag: "Brasil 🇧🇷", antall: 1  },
+    { lag: "England 🏴󠁧󠁢󠁥󠁮󠁧󠁿", antall: 1  }
   ],
-  usaK81: { vinner: 13, uavgjort: 2, tap: 1 },
-  belgiaK82: { vinner: 9, uavgjort: 2, tap: 5 },
+  norgeK78: { vinner: 12, uavgjort: 3, tap: 1 },
   spilteKamper: [
     { kamp: "Kamp 73", hjemme: "Sør-Afrika", borte: "Canada", resultat: "0-1" },
     { kamp: "Kamp 74", hjemme: "Tyskland", borte: "Paraguay", resultat: "1-1" },
@@ -52,7 +51,9 @@ const DATA = {
     { kamp: "Kamp 77", hjemme: "Frankrike", borte: "Sverige", resultat: "3-0" },
     { kamp: "Kamp 78", hjemme: "Elfenbenskysten", borte: "Norge", resultat: "1-2" },
     { kamp: "Kamp 79", hjemme: "Mexico", borte: "Ecuador", resultat: "2-0" },
-    { kamp: "Kamp 80", hjemme: "England", borte: "DR Kongo", resultat: "2-1" }
+    { kamp: "Kamp 80", hjemme: "England", borte: "DR Kongo", resultat: "2-1" },
+    { kamp: "Kamp 81", hjemme: "USA", borte: "Bosnia-Herz.", resultat: "2-0" },
+    { kamp: "Kamp 82", hjemme: "Belgia", borte: "Senegal", resultat: "3-2" }
   ]
 };
 </script>
