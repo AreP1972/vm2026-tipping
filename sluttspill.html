@@ -14,25 +14,25 @@
 <script id="DATA_BLOCK">
 const DATA = {
   oppdatert: "2. juli 2026",
-  kamperSpilt: 10,
+  kamperSpilt: 11,
   totaleKamper: 16,
   deltakere: [
-    { navn: "Are", poeng: 14, eks: 3, vin: 5, feil: 2, champion: "Argentina" },
-    { navn: "Tobias", poeng: 14, eks: 3, vin: 5, feil: 2, champion: "Frankrike" },
-    { navn: "Åge", poeng: 12, eks: 3, vin: 3, feil: 4, champion: "Argentina" },
-    { navn: "Maia", poeng: 12, eks: 2, vin: 6, feil: 2, champion: "Brasil" },
-    { navn: "Filip", poeng: 11, eks: 2, vin: 5, feil: 3, champion: "Frankrike" },
-    { navn: "Sarah", poeng: 11, eks: 2, vin: 5, feil: 3, champion: "Frankrike" },
-    { navn: "Berit", poeng: 10, eks: 3, vin: 1, feil: 6, champion: "Norge" },
-    { navn: "Linus", poeng: 10, eks: 2, vin: 4, feil: 4, champion: "Frankrike" },
-    { navn: "Malin", poeng: 10, eks: 1, vin: 7, feil: 2, champion: "Frankrike" },
-    { navn: "Marcus", poeng: 10, eks: 1, vin: 7, feil: 2, champion: "England" },
-    { navn: "Max", poeng: 10, eks: 2, vin: 4, feil: 4, champion: "Norge" },
-    { navn: "Tina", poeng: 10, eks: 1, vin: 7, feil: 2, champion: "Frankrike" },
-    { navn: "Hanne", poeng: 9, eks: 1, vin: 6, feil: 3, champion: "Frankrike" },
-    { navn: "Ine", poeng: 9, eks: 1, vin: 6, feil: 3, champion: "Frankrike" },
-    { navn: "Maddi", poeng: 8, eks: 1, vin: 5, feil: 4, champion: "Frankrike" },
-    { navn: "Halvor", poeng: 6, eks: 0, vin: 6, feil: 4, champion: "Frankrike" }
+    { navn: "Are", poeng: 15, eks: 3, vin: 6, feil: 2, champion: "Argentina" },
+    { navn: "Tobias", poeng: 15, eks: 3, vin: 6, feil: 2, champion: "Frankrike" },
+    { navn: "Filip", poeng: 14, eks: 3, vin: 5, feil: 3, champion: "Frankrike" },
+    { navn: "Åge", poeng: 13, eks: 3, vin: 4, feil: 4, champion: "Argentina" },
+    { navn: "Maia", poeng: 13, eks: 2, vin: 7, feil: 2, champion: "Brasil" },
+    { navn: "Sarah", poeng: 12, eks: 2, vin: 6, feil: 3, champion: "Frankrike" },
+    { navn: "Berit", poeng: 11, eks: 3, vin: 2, feil: 6, champion: "Norge" },
+    { navn: "Linus", poeng: 11, eks: 2, vin: 5, feil: 4, champion: "Frankrike" },
+    { navn: "Malin", poeng: 11, eks: 1, vin: 8, feil: 2, champion: "Frankrike" },
+    { navn: "Marcus", poeng: 11, eks: 1, vin: 8, feil: 2, champion: "England" },
+    { navn: "Max", poeng: 11, eks: 2, vin: 5, feil: 4, champion: "Norge" },
+    { navn: "Hanne", poeng: 10, eks: 1, vin: 7, feil: 3, champion: "Frankrike" },
+    { navn: "Ine", poeng: 10, eks: 1, vin: 7, feil: 3, champion: "Frankrike" },
+    { navn: "Tina", poeng: 10, eks: 1, vin: 7, feil: 3, champion: "Frankrike" },
+    { navn: "Maddi", poeng: 9, eks: 1, vin: 6, feil: 4, champion: "Frankrike" },
+    { navn: "Halvor", poeng: 7, eks: 0, vin: 7, feil: 4, champion: "Frankrike" }
   ],
   ikkeLeverte: ["Petter (ikke levert)", "Ragnhild (ikke levert)"],
   championStats: [
@@ -42,8 +42,31 @@ const DATA = {
     { lag: "Brasil 🇧🇷", antall: 1 },
     { lag: "England 🏴󠁧󠁢󠁥󠁮󠁧󠁿", antall: 1 }
   ],
-  spaniaK84: { vinner: 15, uavgjort: 1, tap: 0 },
-  sveitsK85: { vinner: 15, uavgjort: 1, tap: 0 },
+  kvartfinaleStats: [
+    { lag: "Frankrike 🇫🇷", antall: 16 },
+    { lag: "Spania 🇪🇸", antall: 16 },
+    { lag: "Argentina 🇦🇷", antall: 15 },
+    { lag: "Brasil 🇧🇷", antall: 12 },
+    { lag: "England 🏴󠁧󠁢󠁥󠁮󠁧󠁿", antall: 12 },
+    { lag: "Belgia 🇧🇪", antall: 7 },
+    { lag: "Colombia 🇨🇴", antall: 7 },
+    { lag: "Nederland 🇳🇱", antall: 7 },
+    { lag: "Norge 🇳🇴", antall: 7 },
+    { lag: "Marokko 🇲🇦", antall: 6 },
+    { lag: "Sveits 🇨🇭", antall: 5 },
+    { lag: "Tyskland 🇩🇪", antall: 4 },
+    { lag: "Senegal 🇸🇳", antall: 3 },
+    { lag: "USA 🇺🇸", antall: 3 },
+    { lag: "Portugal 🇵🇹", antall: 2 },
+    { lag: "Canada 🇨🇦", antall: 1 },
+    { lag: "Ecuador 🇪🇨", antall: 1 },
+    { lag: "Ghana 🇬🇭", antall: 1 },
+    { lag: "Japan 🇯🇵", antall: 1 },
+    { lag: "Kapp Verde 🇨🇻", antall: 1 },
+    { lag: "Sør-Afrika 🇿🇦", antall: 1 }
+  ],
+  spaniaK84:    { vinner: 15, uavgjort: 1, tap: 0 },
+  sveitsK85:    { vinner: 15, uavgjort: 1, tap: 0 },
   argentinaK86: { vinner: 15, uavgjort: 0, tap: 1 },
   spilteKamper: [
     { kamp: "Kamp 73", hjemme: "Sør-Afrika", borte: "Canada", resultat: "0-1" },
@@ -55,7 +78,8 @@ const DATA = {
     { kamp: "Kamp 79", hjemme: "Mexico", borte: "Ecuador", resultat: "2-0" },
     { kamp: "Kamp 80", hjemme: "England", borte: "DR Kongo", resultat: "2-1" },
     { kamp: "Kamp 81", hjemme: "USA", borte: "Bosnia-Herz.", resultat: "2-0" },
-    { kamp: "Kamp 82", hjemme: "Belgia", borte: "Senegal", resultat: "3-2" }
+    { kamp: "Kamp 82", hjemme: "Belgia", borte: "Senegal", resultat: "3-2" },
+    { kamp: "Kamp 84", hjemme: "Spania", borte: "Østerrike", resultat: "3-0" }
   ]
 };
 </script>
@@ -589,25 +613,6 @@ body { padding: 24px 16px 80px; }
   document.getElementById('playerList').innerHTML = playerHTML + nsHTML;
 
   // ── STATS ──
-  const champMax = Math.max(...d.championStats.map(c=>c.antall));
-  const champHTML = d.championStats.map(c => `
-    <div class="c-row">
-      <div class="c-name">${c.lag}</div>
-      <div class="c-bar-bg"><div class="c-bar" style="width:${Math.round(c.antall/champMax*100)}%"></div></div>
-      <div class="c-n">${c.antall}</div>
-    </div>
-  `).join('');
-
-  const matchHTML = d.spilteKamper.map(m => `
-    <div class="m-row">
-      <div class="m-badge">${m.kamp}</div>
-      <div class="m-teams">${m.hjemme} – ${m.borte}</div>
-      <div class="m-score">${m.resultat}</div>
-    </div>
-  `).join('');
-
-  const progTotal = Math.round(d.kamperSpilt / d.totaleKamper * 100);
-
   function fordeling(data, label, lag1, lag2, flagg) {
     const tot = data.vinner + data.uavgjort + data.tap;
     const vP = Math.round(data.vinner / tot * 100);
@@ -628,46 +633,75 @@ body { padding: 24px 16px 80px; }
       '</div></div>';
   }
 
-  const k84HTML = fordeling(d.spaniaK84,    'K84 – Spania vs Østerrike',       'Spania',    'Østerrike',  '🇪🇸');
+  const k84HTML = fordeling(d.spaniaK84,    'K84 – Spania vs Østerrike (3-0)', 'Spania',    'Østerrike',  '🇪🇸');
   const k85HTML = fordeling(d.sveitsK85,    'K85 – Sveits vs Algerie',         'Sveits',    'Algerie',    '🇨🇭');
   const k86HTML = fordeling(d.argentinaK86, 'K86 – Argentina vs Kapp Verde',   'Argentina', 'Kapp Verde', '🇦🇷');
 
-  document.getElementById('statsGrid').innerHTML = `
-    <div class="stat-card">
-      <div class="stat-card-label">🏆 VM-vinner – hvem tror folk?</div>
-      ${champHTML}
-    </div>
+  const qfMax = Math.max(...d.kvartfinaleStats.map(c=>c.antall));
+  let qfHTML = '';
+  d.kvartfinaleStats.forEach(function(c) {
+    qfHTML += '<div class="c-row">' +
+      '<div class="c-name">' + c.lag + '</div>' +
+      '<div class="c-bar-bg"><div class="c-bar" style="width:' + Math.round(c.antall/qfMax*100) + '%"></div></div>' +
+      '<div class="c-n">' + c.antall + '</div>' +
+    '</div>';
+  });
 
-    ${k84HTML}
+  const champMax = Math.max(...d.championStats.map(c=>c.antall));
+  let champHTML = '';
+  d.championStats.forEach(function(c) {
+    champHTML += '<div class="c-row">' +
+      '<div class="c-name">' + c.lag + '</div>' +
+      '<div class="c-bar-bg"><div class="c-bar" style="width:' + Math.round(c.antall/champMax*100) + '%"></div></div>' +
+      '<div class="c-n">' + c.antall + '</div>' +
+    '</div>';
+  });
 
-    ${k85HTML}
+  let matchHTML = '';
+  d.spilteKamper.forEach(function(m) {
+    matchHTML += '<div class="m-row">' +
+      '<div class="m-badge">' + m.kamp + '</div>' +
+      '<div class="m-teams">' + m.hjemme + ' – ' + m.borte + '</div>' +
+      '<div class="m-score">' + m.resultat + '</div>' +
+    '</div>';
+  });
 
-    ${k86HTML}
+  const progTotal = Math.round(d.kamperSpilt / d.totaleKamper * 100);
 
-    <div class="stat-card">
-      <div class="stat-card-label">⚽ Spilte kamper</div>
-      ${matchHTML}
-      <div class="prog-row">
-        <div style="font-size:11px;color:rgba(160,185,220,0.3);min-width:55px;">Fremdrift</div>
-        <div class="prog-bg"><div class="prog-fill" style="width:${progTotal}%"></div></div>
-        <div class="prog-txt">${progTotal}%</div>
-      </div>
-    </div>
-
-    <div class="stat-card">
-      <div class="stat-card-label">🎯 Maks mulige poeng</div>
-      <div class="mp-row"><span class="mp-lbl">16-delsfinalene (16×3p)</span><span class="mp-val">48 p</span></div>
-      <div class="mp-row"><span class="mp-lbl">Kvartfinale (8 lag × 2p)</span><span class="mp-val">16 p</span></div>
-      <div class="mp-row"><span class="mp-lbl">Semifinale (4 lag × 3p)</span><span class="mp-val">12 p</span></div>
-      <div class="mp-row"><span class="mp-lbl">Finale (2 lag × 5p)</span><span class="mp-val">10 p</span></div>
-      <div class="mp-row"><span class="mp-lbl">Bronsefinale (2 lag × 2p)</span><span class="mp-val">4 p</span></div>
-      <div class="mp-row"><span class="mp-lbl">VM-vinner (8p)</span><span class="mp-val">8 p</span></div>
-      <div class="mp-row" style="border-top:1px solid rgba(255,255,255,0.07);padding-top:10px;margin-top:6px;">
-        <span style="color:#e8eef8;font-weight:700;">TOTALT MAKS</span>
-        <span class="mp-total">98 p</span>
-      </div>
-    </div>
-  `;
+  document.getElementById('statsGrid').innerHTML =
+    k84HTML +
+    k85HTML +
+    k86HTML +
+    '<div class="stat-card">' +
+      '<div class="stat-card-label">🔮 Hvem tror folk når kvartfinalen?</div>' +
+      qfHTML +
+    '</div>' +
+    '<div class="stat-card">' +
+      '<div class="stat-card-label">🏆 VM-vinner – hvem tror folk?</div>' +
+      champHTML +
+    '</div>' +
+    '<div class="stat-card">' +
+      '<div class="stat-card-label">⚽ Spilte kamper</div>' +
+      matchHTML +
+      '<div class="prog-row">' +
+        '<div style="font-size:11px;color:rgba(160,185,220,0.3);min-width:55px;">Fremdrift</div>' +
+        '<div class="prog-bg"><div class="prog-fill" style="width:' + progTotal + '%"></div></div>' +
+        '<div class="prog-txt">' + progTotal + '%</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="stat-card">' +
+      '<div class="stat-card-label">🎯 Maks mulige poeng</div>' +
+      '<div class="mp-row"><span class="mp-lbl">16-delsfinalene (16×3p)</span><span class="mp-val">48 p</span></div>' +
+      '<div class="mp-row"><span class="mp-lbl">Kvartfinale (8 lag × 2p)</span><span class="mp-val">16 p</span></div>' +
+      '<div class="mp-row"><span class="mp-lbl">Semifinale (4 lag × 3p)</span><span class="mp-val">12 p</span></div>' +
+      '<div class="mp-row"><span class="mp-lbl">Finale (2 lag × 5p)</span><span class="mp-val">10 p</span></div>' +
+      '<div class="mp-row"><span class="mp-lbl">Bronsefinale (2 lag × 2p)</span><span class="mp-val">4 p</span></div>' +
+      '<div class="mp-row"><span class="mp-lbl">VM-vinner (8p)</span><span class="mp-val">8 p</span></div>' +
+      '<div class="mp-row" style="border-top:1px solid rgba(255,255,255,0.07);padding-top:10px;margin-top:6px;">' +
+        '<span style="color:#e8eef8;font-weight:700;">TOTALT MAKS</span>' +
+        '<span class="mp-total">98 p</span>' +
+      '</div>' +
+    '</div>';
 
   // Footer
   const span = sorted[0].poeng - sorted[sorted.length-1].poeng;
