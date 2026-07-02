@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
+<!-- build:20260703000937 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -67,7 +68,7 @@ const DATA = {
   ],
   spaniaK84:    { vinner: 15, uavgjort: 1, tap: 0 },
   sveitsK85:    { vinner: 15, uavgjort: 1, tap: 0 },
-  argentinaK86: { vinner: 15, uavgjort: 0, tap: 1 },
+  portugalk83:  { vinner: 10, uavgjort: 2, tap: 4 },
   spilteKamper: [
     { kamp: "Kamp 73", hjemme: "Sør-Afrika", borte: "Canada", resultat: "0-1" },
     { kamp: "Kamp 74", hjemme: "Tyskland", borte: "Paraguay", resultat: "1-1" },
@@ -633,9 +634,9 @@ body { padding: 24px 16px 80px; }
       '</div></div>';
   }
 
+  const k83HTML = fordeling(d.portugalk83,   'K83 – Portugal vs Kroatia',       'Portugal',  'Kroatia',    '🇵🇹');
   const k84HTML = fordeling(d.spaniaK84,    'K84 – Spania vs Østerrike (3-0)', 'Spania',    'Østerrike',  '🇪🇸');
   const k85HTML = fordeling(d.sveitsK85,    'K85 – Sveits vs Algerie',         'Sveits',    'Algerie',    '🇨🇭');
-  const k86HTML = fordeling(d.argentinaK86, 'K86 – Argentina vs Kapp Verde',   'Argentina', 'Kapp Verde', '🇦🇷');
 
   const qfMax = Math.max(...d.kvartfinaleStats.map(c=>c.antall));
   let qfHTML = '';
@@ -669,9 +670,9 @@ body { padding: 24px 16px 80px; }
   const progTotal = Math.round(d.kamperSpilt / d.totaleKamper * 100);
 
   document.getElementById('statsGrid').innerHTML =
+    k83HTML +
     k84HTML +
     k85HTML +
-    k86HTML +
     '<div class="stat-card">' +
       '<div class="stat-card-label">🔮 Hvem tror folk når kvartfinalen?</div>' +
       qfHTML +
