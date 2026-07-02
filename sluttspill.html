@@ -42,8 +42,9 @@ const DATA = {
     { lag: "Brasil 🇧🇷", antall: 1 },
     { lag: "England 🏴󠁧󠁢󠁥󠁮󠁧󠁿", antall: 1 }
   ],
-  usaK81: { vinner: 13, uavgjort: 2, tap: 1 },
-  belgiaK82: { vinner: 9, uavgjort: 2, tap: 5 },
+  spaniaK84: { vinner: 15, uavgjort: 1, tap: 0 },
+  sveitsK85: { vinner: 15, uavgjort: 1, tap: 0 },
+  argentinaK86: { vinner: 15, uavgjort: 0, tap: 1 },
   spilteKamper: [
     { kamp: "Kamp 73", hjemme: "Sør-Afrika", borte: "Canada", resultat: "0-1" },
     { kamp: "Kamp 74", hjemme: "Tyskland", borte: "Paraguay", resultat: "1-1" },
@@ -627,8 +628,9 @@ body { padding: 24px 16px 80px; }
       '</div></div>';
   }
 
-  const k81HTML = fordeling(d.usaK81,    'K81 – USA vs Bosnia-Herz. (2-0)',  'USA',    'Bosnia', '🇺🇸');
-  const k82HTML = fordeling(d.belgiaK82, 'K82 – Belgia vs Senegal (3-2)',     'Belgia', 'Senegal','🇧🇪');
+  const k84HTML = fordeling(d.spaniaK84,    'K84 – Spania vs Østerrike',       'Spania',    'Østerrike',  '🇪🇸');
+  const k85HTML = fordeling(d.sveitsK85,    'K85 – Sveits vs Algerie',         'Sveits',    'Algerie',    '🇨🇭');
+  const k86HTML = fordeling(d.argentinaK86, 'K86 – Argentina vs Kapp Verde',   'Argentina', 'Kapp Verde', '🇦🇷');
 
   document.getElementById('statsGrid').innerHTML = `
     <div class="stat-card">
@@ -636,9 +638,11 @@ body { padding: 24px 16px 80px; }
       ${champHTML}
     </div>
 
-    ${k81HTML}
+    ${k84HTML}
 
-    ${k82HTML}
+    ${k85HTML}
+
+    ${k86HTML}
 
     <div class="stat-card">
       <div class="stat-card-label">⚽ Spilte kamper</div>
