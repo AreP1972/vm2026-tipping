@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-<!-- build:20260704083205 -->
+<!-- build:20260704090740 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -65,6 +65,34 @@ const DATA = {
     { lag: "Japan 🇯🇵",      antall: 1 },
     { lag: "Kapp Verde 🇨🇻", antall: 1 },
     { lag: "Sør-Afrika 🇿🇦", antall: 1 }
+  ],
+  attedelsfinale: [
+    { hjemme: "Canada",    borte: "Marokko" },
+    { hjemme: "Paraguay",  borte: "Frankrike" },
+    { hjemme: "Brasil",    borte: "Norge" },
+    { hjemme: "Mexico",    borte: "England" },
+    { hjemme: "Portugal",  borte: "Spania" },
+    { hjemme: "USA",       borte: "Belgia" },
+    { hjemme: "Argentina", borte: "Egypt" },
+    { hjemme: "Sveits",    borte: "Colombia" }
+  ],
+  qfSjanse: [
+    { navn: "Ine",    alive: 8, ute: [] },
+    { navn: "Max",    alive: 8, ute: [] },
+    { navn: "Tina",   alive: 8, ute: [] },
+    { navn: "Are",    alive: 7, ute: ["Nederland"] },
+    { navn: "Åge",    alive: 7, ute: ["Nederland"] },
+    { navn: "Filip",  alive: 7, ute: ["Senegal"] },
+    { navn: "Halvor", alive: 7, ute: ["Tyskland"] },
+    { navn: "Maddi",  alive: 7, ute: ["Ecuador"] },
+    { navn: "Marcus", alive: 7, ute: ["Nederland"] },
+    { navn: "Sarah",  alive: 7, ute: ["Senegal"] },
+    { navn: "Tobias", alive: 7, ute: ["Nederland"] },
+    { navn: "Hanne",  alive: 6, ute: ["Tyskland", "Sør-Afrika"] },
+    { navn: "Linus",  alive: 6, ute: ["Senegal", "Ghana"] },
+    { navn: "Maia",   alive: 6, ute: ["Nederland", "Tyskland"] },
+    { navn: "Malin",  alive: 6, ute: ["Nederland", "Tyskland"] },
+    { navn: "Berit",  alive: 5, ute: ["Nederland", "Japan", "Kapp Verde"] }
   ],
   spilteKamper: [
     { kamp: "Kamp 73", hjemme: "Sør-Afrika",     borte: "Canada",       resultat: "0-1" },
@@ -616,27 +644,34 @@ body { padding: 24px 16px 80px; }
   document.getElementById('playerList').innerHTML = playerHTML + nsHTML;
 
   // ── STATS ──
-  function fordeling(data, label, lag1, lag2, flagg) {
-    const tot = data.vinner + data.uavgjort + data.tap;
-    const vP = Math.round(data.vinner / tot * 100);
-    const uP = Math.round(data.uavgjort / tot * 100);
-    const tP = 100 - vP - uP;
-    return '<div class="stat-card">' +
-      '<div class="stat-card-label">' + flagg + ' ' + label + '</div>' +
-      '<div style="font-size:12px;color:rgba(160,185,220,0.3);margin-bottom:10px;">Tippefordeling</div>' +
-      '<div class="no-bar">' +
-        '<div class="no-seg no-win" style="width:' + vP + '%">' + (vP > 12 ? vP + '%' : '') + '</div>' +
-        '<div class="no-seg no-draw" style="width:' + uP + '%">' + (uP > 12 ? uP + '%' : '') + '</div>' +
-        '<div class="no-seg no-loss" style="width:' + tP + '%">' + (tP > 12 ? tP + '%' : '') + '</div>' +
+
+  // 8-delsfinale kampoppsett
+  let atteHTML = '';
+  d.attedelsfinale.forEach(function(m) {
+    atteHTML += '<div class="m-row">' +
+      '<div class="m-teams" style="color:rgba(200,220,255,0.7);flex:1;">' + m.hjemme + ' – ' + m.borte + '</div>' +
+    '</div>';
+  });
+
+  // Levende QF-tips per deltaker
+  let sjHTML = '';
+  d.qfSjanse.forEach(function(p) {
+    const pct = Math.round(p.alive / 8 * 100);
+    const barColor = p.alive === 8 ? '#1a8c35' : p.alive >= 7 ? '#1a4ccc' : p.alive >= 6 ? '#7a6000' : '#9a1a1a';
+    const uteStr = p.ute.length > 0
+      ? '<span style="font-size:10px;color:rgba(220,100,100,0.5);margin-left:6px;">✗ ' + p.ute.join(', ') + '</span>'
+      : '<span style="font-size:10px;color:rgba(100,220,100,0.5);margin-left:6px;">✓ alle i live</span>';
+    sjHTML += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:7px;">' +
+      '<div style="font-size:13px;font-weight:700;min-width:72px;color:rgba(210,225,255,0.8);">' + p.navn + '</div>' +
+      '<div style="flex:1;height:16px;border-radius:4px;background:rgba(255,255,255,0.05);overflow:hidden;">' +
+        '<div style="width:' + pct + '%;height:100%;border-radius:4px;background:' + barColor + ';opacity:0.75;"></div>' +
       '</div>' +
-      '<div class="no-legend">' +
-        '<div class="no-leg"><div class="no-dot" style="background:#1a8c35"></div>' + lag1 + ' vinner: <strong style="color:rgba(200,230,200,0.6)">' + data.vinner + '</strong></div>' +
-        '<div class="no-leg"><div class="no-dot" style="background:#7a7a00"></div>Uavgjort: <strong style="color:rgba(220,220,160,0.6)">' + data.uavgjort + '</strong></div>' +
-        '<div class="no-leg"><div class="no-dot" style="background:#9a1a1a"></div>' + lag2 + ' vinner: <strong style="color:rgba(230,170,170,0.6)">' + data.tap + '</strong></div>' +
-      '</div></div>';
-  }
+      '<div style="font-size:12px;font-weight:700;color:rgba(160,185,220,0.5);min-width:28px;text-align:right;">' + p.alive + '/8</div>' +
+      uteStr +
+    '</div>';
+  });
 
-
+  // Hvem tror folk når kvartfinalen
   const qfMax = Math.max(...d.kvartfinaleStats.map(c=>c.antall));
   let qfHTML = '';
   d.kvartfinaleStats.forEach(function(c) {
@@ -647,6 +682,7 @@ body { padding: 24px 16px 80px; }
     '</div>';
   });
 
+  // VM-vinner
   const champMax = Math.max(...d.championStats.map(c=>c.antall));
   let champHTML = '';
   d.championStats.forEach(function(c) {
@@ -657,6 +693,7 @@ body { padding: 24px 16px 80px; }
     '</div>';
   });
 
+  // Spilte kamper
   let matchHTML = '';
   d.spilteKamper.forEach(function(m) {
     matchHTML += '<div class="m-row">' +
@@ -670,6 +707,16 @@ body { padding: 24px 16px 80px; }
 
   document.getElementById('statsGrid').innerHTML =
     '<div class="stat-card">' +
+      '<div class="stat-card-label">⚔️ 8-delsfinale – kampoppsett</div>' +
+      '<div style="font-size:11px;color:rgba(160,185,220,0.3);margin-bottom:10px;">Starter 4. juli</div>' +
+      atteHTML +
+    '</div>' +
+    '<div class="stat-card" style="grid-column:1/-1;">' +
+      '<div class="stat-card-label">🎯 Levende kvartfinale-tips per deltaker</div>' +
+      '<div style="font-size:11px;color:rgba(160,185,220,0.3);margin-bottom:12px;">Av 8 tippede lag – hvor mange er fortsatt i turneringen?</div>' +
+      sjHTML +
+    '</div>' +
+    '<div class="stat-card">' +
       '<div class="stat-card-label">🔮 Hvem tror folk når kvartfinalen?</div>' +
       qfHTML +
     '</div>' +
@@ -678,7 +725,7 @@ body { padding: 24px 16px 80px; }
       champHTML +
     '</div>' +
     '<div class="stat-card">' +
-      '<div class="stat-card-label">⚽ Spilte kamper</div>' +
+      '<div class="stat-card-label">⚽ Spilte kamper (16-delsfinale)</div>' +
       matchHTML +
       '<div class="prog-row">' +
         '<div style="font-size:11px;color:rgba(160,185,220,0.3);min-width:55px;">Fremdrift</div>' +
@@ -687,16 +734,16 @@ body { padding: 24px 16px 80px; }
       '</div>' +
     '</div>' +
     '<div class="stat-card">' +
-      '<div class="stat-card-label">🎯 Maks mulige poeng</div>' +
-      '<div class="mp-row"><span class="mp-lbl">16-delsfinalene (16×3p)</span><span class="mp-val">48 p</span></div>' +
+      '<div class="stat-card-label">🎯 Gjenstående poengmuligheter</div>' +
+      '<div class="mp-row"><span class="mp-lbl">16-delsfinalene (ferdig)</span><span class="mp-val" style="color:rgba(100,180,100,0.5)">48 p ✓</span></div>' +
       '<div class="mp-row"><span class="mp-lbl">Kvartfinale (8 lag × 2p)</span><span class="mp-val">16 p</span></div>' +
       '<div class="mp-row"><span class="mp-lbl">Semifinale (4 lag × 3p)</span><span class="mp-val">12 p</span></div>' +
       '<div class="mp-row"><span class="mp-lbl">Finale (2 lag × 5p)</span><span class="mp-val">10 p</span></div>' +
       '<div class="mp-row"><span class="mp-lbl">Bronsefinale (2 lag × 2p)</span><span class="mp-val">4 p</span></div>' +
       '<div class="mp-row"><span class="mp-lbl">VM-vinner (8p)</span><span class="mp-val">8 p</span></div>' +
       '<div class="mp-row" style="border-top:1px solid rgba(255,255,255,0.07);padding-top:10px;margin-top:6px;">' +
-        '<span style="color:#e8eef8;font-weight:700;">TOTALT MAKS</span>' +
-        '<span class="mp-total">98 p</span>' +
+        '<span style="color:#e8eef8;font-weight:700;">GJENSTÅR MAKS</span>' +
+        '<span class="mp-total">50 p</span>' +
       '</div>' +
     '</div>';
 
