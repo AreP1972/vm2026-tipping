@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<!-- build:20260704220307 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<title>Maihaugen Del 2 – VM 2026</title>
+</head>
+<body>
+
+<script id="DATA_BLOCK">
+const DATA = {
+  oppdatert: "4. juli 2026",
+  qfBekreftet: 1,
+  maxPoeng: 53,
+  deltakere: [
+    { navn: "Filip",  total: 2, qf: 2, sf: 0, fin: 0, brn: 0, vin: 0, potensial: 53, vinnPick: "Frankrike" },
+    { navn: "Ine",    total: 2, qf: 2, sf: 0, fin: 0, brn: 0, vin: 0, potensial: 53, vinnPick: "Frankrike" },
+    { navn: "Linus",  total: 2, qf: 2, sf: 0, fin: 0, brn: 0, vin: 0, potensial: 53, vinnPick: "Frankrike" },
+    { navn: "Maddi",  total: 2, qf: 2, sf: 0, fin: 0, brn: 0, vin: 0, potensial: 53, vinnPick: "Frankrike" },
+    { navn: "Max",    total: 2, qf: 2, sf: 0, fin: 0, brn: 0, vin: 0, potensial: 53, vinnPick: "Norge" },
+    { navn: "Tina",   total: 2, qf: 2, sf: 0, fin: 0, brn: 0, vin: 0, potensial: 53, vinnPick: "Frankrike" },
+    { navn: "Are",    total: 0, qf: 0, sf: 0, fin: 0, brn: 0, vin: 0, potensial: 53, vinnPick: "Argentina" },
+    { navn: "Berit",  total: 0, qf: 0, sf: 0, fin: 0, brn: 0, vin: 0, potensial: 53, vinnPick: "Norge" },
+    { navn: "Halvor", total: 0, qf: 0, sf: 0, fin: 0, brn: 0, vin: 0, potensial: 53, vinnPick: "Frankrike" },
+    { navn: "Hanne",  total: 0, qf: 0, sf: 0, fin: 0, brn: 0, vin: 0, potensial: 53, vinnPick: "Frankrike" },
+    { navn: "Maia",   total: 0, qf: 0, sf: 0, fin: 0, brn: 0, vin: 0, potensial: 53, vinnPick: "Brasil" },
+    { navn: "Malin",  total: 0, qf: 0, sf: 0, fin: 0, brn: 0, vin: 0, potensial: 53, vinnPick: "Frankrike" },
+    { navn: "Marcus", total: 0, qf: 0, sf: 0, fin: 0, brn: 0, vin: 0, potensial: 53, vinnPick: "England" },
+    { navn: "Sarah",  total: 0, qf: 0, sf: 0, fin: 0, brn: 0, vin: 0, potensial: 53, vinnPick: "Frankrike" },
+    { navn: "Tobias", total: 0, qf: 0, sf: 0, fin: 0, brn: 0, vin: 0, potensial: 53, vinnPick: "Frankrike" },
+    { navn: "Åge",  total: 0, qf: 0, sf: 0, fin: 0, brn: 0, vin: 0, potensial: 53, vinnPick: "Argentina" }
+  ],
+  ikkeLeverte: ["Petter (ikke levert)", "Ragnhild (ikke levert)"],
+  sfStats: [
+    { lag: "Frankrike 🇫🇷", antall: 15 },
+    { lag: "Argentina 🇦🇷", antall: 14 },
+    { lag: "Spania 🇪🇸",    antall: 13 },
+    { lag: "Brasil 🇧🇷",    antall: 8 },
+    { lag: "England 🏴󠁧󠁢󠁥󠁮󠁧󠁿", antall: 5 },
+    { lag: "Norge 🇳🇴",     antall: 4 },
+    { lag: "Colombia 🇨🇴",  antall: 1 },
+    { lag: "Kapp Verde 🇨🇻",antall: 1 },
+    { lag: "Portugal 🇵🇹",  antall: 1 },
+    { lag: "Tyskland 🇩🇪",  antall: 1 },
+    { lag: "USA 🇺🇸",       antall: 1 }
+  ],
+  finaleStats: [
+    { lag: "Frankrike 🇫🇷", antall: 12 },
+    { lag: "Argentina 🇦🇷", antall: 10 },
+    { lag: "Spania 🇪🇸",    antall: 5 },
+    { lag: "Brasil 🇧🇷",    antall: 2 },
+    { lag: "Norge 🇳🇴",     antall: 2 },
+    { lag: "England 🏴󠁧󠁢󠁥󠁮󠁧󠁿", antall: 1 }
+  ],
+  vinnStats: [
+    { lag: "Frankrike 🇫🇷", antall: 10 },
+    { lag: "Argentina 🇦🇷", antall: 2 },
+    { lag: "Norge 🇳🇴",     antall: 2 },
+    { lag: "Brasil 🇧🇷",    antall: 1 },
+    { lag: "England 🏴󠁧󠁢󠁥󠁮󠁧󠁿", antall: 1 }
+  ],
+  brnStats: [
+    { lag: "Spania 🇪🇸",    antall: 8 },
+    { lag: "Brasil 🇧🇷",    antall: 6 },
+    { lag: "Frankrike 🇫🇷", antall: 4 },
+    { lag: "Argentina 🇦🇷", antall: 4 },
+    { lag: "England 🏴󠁧󠁢󠁥󠁮󠁧󠁿", antall: 4 },
+    { lag: "Norge 🇳🇴",     antall: 3 },
+    { lag: "Colombia 🇨🇴",  antall: 1 },
+    { lag: "Tyskland 🇩🇪",  antall: 1 },
+    { lag: "USA 🇺🇸",       antall: 1 }
+  ],
+  brnvStats: [
+    { lag: "Spania 🇪🇸",    antall: 5 },
+    { lag: "Frankrike 🇫🇷", antall: 3 },
+    { lag: "Brasil 🇧🇷",    antall: 2 },
+    { lag: "England 🏴󠁧󠁢󠁥󠁮󠁧󠁿", antall: 2 },
+    { lag: "Argentina 🇦🇷", antall: 1 },
+    { lag: "Norge 🇳🇴",     antall: 1 },
+    { lag: "Tyskland 🇩🇪",  antall: 1 },
+    { lag: "USA 🇺🇸",       antall: 1 }
+  ],
+  picks: [
+    { navn: "Filip",  sf: ["Frankrike","Spania","Argentina","Brasil"],     fin: ["Frankrike","Spania"],    vinn: "Frankrike", brn: ["Argentina","Brasil"],    brnv: "Brasil" },
+    { navn: "Ine",    sf: ["Spania","Frankrike","England","Argentina"],     fin: ["Argentina","Frankrike"], vinn: "Frankrike", brn: ["Spania","England"],      brnv: "Spania" },
+    { navn: "Linus",  sf: ["Frankrike","Spania","England","Argentina"],     fin: ["Frankrike","Argentina"], vinn: "Frankrike", brn: ["Spania","England"],      brnv: "England" },
+    { navn: "Maddi",  sf: ["Frankrike","USA","Norge","Argentina"],          fin: ["Frankrike","Argentina"], vinn: "Frankrike", brn: ["USA","Norge"],           brnv: "USA" },
+    { navn: "Max",    sf: ["Frankrike","Spania","Norge","Colombia"],         fin: ["Spania","Norge"],        vinn: "Norge",     brn: ["Frankrike","Colombia"],  brnv: "Frankrike" },
+    { navn: "Tina",   sf: ["Frankrike","Spania","Brasil","Argentina"],      fin: ["Frankrike","Brasil"],    vinn: "Frankrike", brn: ["Spania","Argentina"],    brnv: "Argentina" },
+    { navn: "Are",    sf: ["Frankrike","Spania","Brasil","Argentina"],      fin: ["Spania","Argentina"],    vinn: "Argentina", brn: ["Frankrike","Brasil"],    brnv: "Frankrike" },
+    { navn: "Berit",  sf: ["Kapp Verde","Portugal","Frankrike","Norge"],    fin: ["Norge","Frankrike"],     vinn: "Norge",     brn: ["Norge","Frankrike"],     brnv: "Spania" },
+    { navn: "Halvor", sf: ["Frankrike","Argentina","England","Spania"],     fin: ["Frankrike","Argentina"], vinn: "Frankrike", brn: ["England","Spania"],      brnv: "England" },
+    { navn: "Hanne",  sf: ["Brasil","Frankrike","Spania","Argentina"],      fin: ["Frankrike","Argentina"], vinn: "Frankrike", brn: ["Brasil","Spania"],       brnv: "Brasil" },
+    { navn: "Maia",   sf: ["Tyskland","Brasil","Spania","Argentina"],       fin: ["Brasil","Spania"],       vinn: "Brasil",    brn: ["Tyskland","Argentina"],  brnv: "Tyskland" },
+    { navn: "Malin",  sf: ["Frankrike","Brasil","Spania","Argentina"],      fin: ["Frankrike","Argentina"], vinn: "Frankrike", brn: ["Spania","Brasil"],       brnv: "Spania" },
+    { navn: "Marcus", sf: ["England","Argentina","Spania","Frankrike"],     fin: ["England","Spania"],      vinn: "England",   brn: ["Argentina","Frankrike"], brnv: "Frankrike" },
+    { navn: "Sarah",  sf: ["Frankrike","Norge","Argentina","Brasil"],       fin: ["Frankrike","Argentina"], vinn: "Frankrike", brn: ["Norge","Brasil"],        brnv: "Norge" },
+    { navn: "Tobias", sf: ["Frankrike","Spania","England","Argentina"],     fin: ["Frankrike","Argentina"], vinn: "Frankrike", brn: ["Spania","England"],      brnv: "Spania" },
+    { navn: "Åge",  sf: ["Frankrike","Spania","Brasil","Argentina"],      fin: ["Frankrike","Argentina"], vinn: "Argentina", brn: ["Spania","Brasil"],       brnv: "Spania" }
+  ]
+};
+</script>
+
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html, body {
+  background: #060e1f;
+  font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  color: #e8eef8;
+  min-height: 100vh;
+}
+
+body { padding: 24px 16px 80px; }
+.page { max-width: 860px; margin: 0 auto; }
+
+/* HERO */
+.hero {
+  position: relative;
+  border-radius: 20px 20px 0 0;
+  background: linear-gradient(160deg, #0b1d42 0%, #091530 50%, #071226 100%);
+  border: 1px solid rgba(56, 139, 255, 0.18);
+  overflow: hidden;
+}
+.hero-svg-wrap {
+  position: absolute; inset: 0; pointer-events: none;
+}
+.hero-svg-wrap svg { display: block; width: 100%; height: 100%; }
+.hero-text {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 48px 20px 42px;
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 5px; text-transform: uppercase;
+  color: rgba(80, 160, 255, 0.8);
+  margin-bottom: 6px;
+  text-shadow: 0 0 20px rgba(40, 100, 255, 0.6);
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(77,166,255,0.1);
+  border: 1px solid rgba(77,166,255,0.25);
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: #4da6ff;
+  margin-bottom: 10px;
+}
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 8vw, 86px);
+  letter-spacing: 5px; line-height: 0.9;
+  color: #fff;
+  text-shadow: 0 0 60px rgba(40, 120, 255, 0.5), 0 2px 0 rgba(0,0,0,0.5);
+}
+.hero-title em { font-style: normal; color: #4da6ff; }
+.hero-sub {
+  font-size: 12px; letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-top: 10px; font-weight: 600;
+}
+.hero-meta {
+  display: flex; flex-direction: row;
+  gap: 12px; justify-content: center;
+  margin-bottom: 14px;
+}
+.hero-meta-item {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(80,160,255,0.15);
+  border-radius: 8px;
+  padding: 5px 14px;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 1px; color: rgba(255,255,255,0.5);
+}
+.hero-meta-item span { color: #4da6ff; }
+
+/* STANDINGS */
+.standings {
+  background: linear-gradient(180deg, #071428 0%, #060e1f 100%);
+  border: 1px solid rgba(56, 139, 255, 0.12);
+  border-top: none;
+}
+.section-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 18px 24px 14px;
+  border-bottom: 1px solid rgba(56,139,255,0.08);
+}
+.section-header-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px; letter-spacing: 3px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+}
+
+.player-row {
+  display: flex; align-items: center;
+  padding: 0 20px; min-height: 62px;
+  border-bottom: 1px solid rgba(255,255,255,0.035);
+  position: relative; transition: background 0.15s; cursor: default;
+}
+.player-row:hover { background: rgba(80,140,255,0.04); }
+
+.player-row::before {
+  content: ''; position: absolute;
+  left: 0; top: 0; bottom: 0; width: 3px;
+}
+.top-1::before { background: linear-gradient(180deg, #ffd700, #ffb300); }
+.top-2::before { background: linear-gradient(180deg, #c0cce0, #9aabb8); }
+.top-3::before { background: linear-gradient(180deg, #cd8f4a, #a06030); }
+.mid::before   { background: transparent; }
+.bot-1::before { background: rgba(220,60,60,0.55); }
+.bot-2::before { background: rgba(210,60,60,0.35); }
+.bot-3::before { background: rgba(200,60,60,0.2); }
+
+.top-1 { background: rgba(255,215,0,0.04); }
+.top-2 { background: rgba(192,204,224,0.025); }
+.top-3 { background: rgba(205,143,74,0.03); }
+.bot-1 { background: rgba(200,50,50,0.04); }
+
+.row-prog {
+  position: absolute; left: 3px; top: 0; bottom: 0;
+  opacity: 0.06; pointer-events: none; transition: width 0.7s ease;
+}
+.top-1 .row-prog { background: #ffd700; }
+.top-2 .row-prog { background: #c0cce0; }
+.top-3 .row-prog { background: #cd8f4a; }
+.mid   .row-prog { background: #3a78ff; }
+.bot-1 .row-prog, .bot-2 .row-prog, .bot-3 .row-prog { background: #cc3333; }
+
+.medal-col {
+  font-size: 22px; min-width: 34px;
+  text-align: center; position: relative; z-index: 1; line-height: 1;
+}
+.player-info {
+  flex: 1; min-width: 0; position: relative; z-index: 1;
+}
+.player-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px; letter-spacing: 2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.top-1 .player-name { color: #ffd700; }
+.top-2 .player-name { color: #ccd8ea; }
+.top-3 .player-name { color: #d09a60; }
+.mid   .player-name { color: #cad7ee; }
+.bot-1 .player-name, .bot-2 .player-name, .bot-3 .player-name { color: rgba(200,210,230,0.5); }
+
+.player-sub {
+  font-size: 11px; color: rgba(160,185,230,0.35);
+  font-weight: 600; letter-spacing: 0.3px; margin-top: 2px;
+}
+.player-sub .hit { color: rgba(100,200,120,0.7); }
+.player-sub .pot { color: rgba(77,166,255,0.45); }
+
+.score-area {
+  position: relative; z-index: 1;
+  text-align: right; min-width: 60px;
+}
+.pts-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 38px; line-height: 1; letter-spacing: 1px;
+}
+.top-1 .pts-num { color: #ffd700; }
+.top-2 .pts-num { color: #c0cce0; }
+.top-3 .pts-num { color: #cd8f4a; }
+.mid   .pts-num { color: rgba(120,165,255,0.7); }
+.bot-1 .pts-num, .bot-2 .pts-num, .bot-3 .pts-num { color: rgba(210,80,80,0.6); }
+
+.pts-unit {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(160,185,220,0.2); margin-top: -2px;
+}
+
+.ns-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.025);
+  border-left: 3px solid rgba(100,140,200,0.1);
+  color: rgba(160,185,220,0.25);
+  font-size: 12px; font-weight: 600; letter-spacing: 1px;
+}
+
+/* STATS */
+.stats-wrap {
+  margin-top: 4px;
+  border: 1px solid rgba(56, 139, 255, 0.12);
+  border-top: none;
+  background: #050d1c;
+  border-radius: 0 0 18px 18px;
+  padding: 28px 24px 32px;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media(max-width: 580px) { .stats-grid { grid-template-columns: 1fr; } }
+
+.stat-card {
+  background: rgba(56, 100, 200, 0.06);
+  border: 1px solid rgba(56,139,255,0.1);
+  border-radius: 14px;
+  padding: 18px 20px;
+}
+.stat-card.full { grid-column: 1 / -1; }
+.stat-card-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: rgba(80, 140, 255, 0.6);
+  margin-bottom: 14px;
+}
+.stat-card-sub {
+  font-size: 10px; font-weight: 600;
+  color: rgba(120,160,220,0.35);
+  letter-spacing: 1px; margin-left: 8px;
+}
+
+.c-row { display:flex; align-items:center; gap:10px; margin-bottom:7px; }
+.c-name { font-size:13px; font-weight:700; min-width:120px; color: rgba(210,225,255,0.8); white-space:nowrap; }
+.c-bar-bg { flex:1; height:18px; border-radius:4px; background:rgba(255,255,255,0.05); overflow:hidden; }
+.c-bar    { height:100%; border-radius:4px; background:linear-gradient(90deg,#1a4ccc,#4da6ff); }
+.c-bar.gold { background: linear-gradient(90deg,#c08000,#ffd700); }
+.c-n { font-size:12px; font-weight:700; color:rgba(160,185,220,0.4); min-width:18px; text-align:right; }
+
+/* PICKS TABLE */
+.picks-table { width:100%; border-collapse:collapse; font-size:12px; }
+.picks-table th {
+  font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase;
+  color:rgba(80,140,255,0.5); padding:6px 10px; text-align:left;
+  border-bottom:1px solid rgba(56,139,255,0.1);
+}
+.picks-table td {
+  padding:8px 10px; border-bottom:1px solid rgba(255,255,255,0.03);
+  color:rgba(200,215,245,0.7); vertical-align:top;
+}
+.picks-table tr:hover td { background:rgba(77,166,255,0.04); }
+.picks-table .td-name {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:17px; letter-spacing:1px; color:#cad7ee;
+  white-space:nowrap;
+}
+.picks-table .td-picks { color:rgba(160,190,230,0.6); font-weight:600; }
+.picks-table .td-winner {
+  font-weight:700; color:rgba(255,215,0,0.8);
+}
+.picks-table .td-brnv { color:rgba(205,143,74,0.8); font-weight:700; }
+
+/* points pip row */
+.round-pips { display:flex; gap:4px; flex-wrap:wrap; }
+.pip {
+  display:inline-flex; align-items:center; justify-content:center;
+  background:rgba(56,100,200,0.15);
+  border:1px solid rgba(56,139,255,0.15);
+  border-radius:4px;
+  padding:2px 6px;
+  font-size:10px; font-weight:700;
+  color:rgba(140,170,220,0.5);
+  letter-spacing:0.5px;
+  white-space:nowrap;
+}
+.pip.hit {
+  background:rgba(30,120,60,0.25);
+  border-color:rgba(60,180,100,0.3);
+  color:rgba(100,220,140,0.9);
+}
+
+/* status banner */
+.status-banner {
+  background:rgba(77,166,255,0.07);
+  border:1px solid rgba(77,166,255,0.15);
+  border-radius:10px;
+  padding:10px 16px;
+  margin-bottom:16px;
+  font-size:12px; font-weight:700; letter-spacing:1px;
+  color:rgba(160,200,255,0.7);
+  text-align:center;
+}
+
+@media(max-width: 600px) {
+  .hero-svg-wrap { display: none; }
+  .hero-text { padding: 28px 16px 28px; }
+  .hero-eyebrow { font-size: 10px; letter-spacing: 3px; margin-bottom: 4px; }
+  .hero-title { font-size: clamp(28px, 10vw, 52px); letter-spacing: 3px; }
+  .hero-sub { font-size: 10px; letter-spacing: 2px; margin-top: 8px; }
+  .hero-meta { gap: 10px; margin-bottom: 12px; flex-direction: row; }
+  .hero-meta-item { font-size: 12px; padding: 5px 12px; }
+  .picks-table { font-size:11px; }
+  .picks-table .td-name { font-size:14px; }
+}
+</style>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-svg-wrap">
+      <svg viewBox="0 0 860 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="g1" cx="80%" cy="30%" r="55%">
+            <stop offset="0%" stop-color="#1a4ccc" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#0b1d42" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="g2" cx="15%" cy="75%" r="45%">
+            <stop offset="0%" stop-color="#4da6ff" stop-opacity="0.10"/>
+            <stop offset="100%" stop-color="#060e1f" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#g1)"/>
+        <rect width="100%" height="100%" fill="url(#g2)"/>
+        <circle cx="750" cy="50" r="120" fill="rgba(77,166,255,0.04)"/>
+        <circle cx="100" cy="230" r="80" fill="rgba(77,166,255,0.03)"/>
+        <!-- decorative lines -->
+        <line x1="0" y1="200" x2="860" y2="80" stroke="rgba(77,166,255,0.04)" stroke-width="1"/>
+        <line x1="0" y1="230" x2="860" y2="110" stroke="rgba(77,166,255,0.02)" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="hero-text">
+      <div class="hero-eyebrow">Maihaugen Tippekonkurranse</div>
+      <div class="hero-badge">Del 2 &nbsp;·&nbsp; Sluttspill VM 2026</div>
+      <div class="hero-title">KVARTFINALE<br><em>&amp; VIDERE</em></div>
+      <div class="hero-sub">Kvartfinale &nbsp;·&nbsp; Semifinale &nbsp;·&nbsp; Finale &nbsp;·&nbsp; Bronsefinale</div>
+      <div style="height:18px"></div>
+      <div class="hero-meta">
+        <div class="hero-meta-item" id="meta-oppdatert"></div>
+        <div class="hero-meta-item" id="meta-qf"></div>
+        <div class="hero-meta-item">Maks <span>53p</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STANDINGS -->
+  <div class="standings">
+    <div class="section-header">
+      <div class="section-header-title">Stillingen – Del 2</div>
+    </div>
+    <div id="standings-rows"></div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-wrap">
+    <div id="status-banner"></div>
+    <div class="stats-grid">
+
+      <!-- SF picks - full width -->
+      <div class="stat-card full">
+        <div class="stat-card-label">Semifinale-tips <span class="stat-card-sub">4 lag videre &nbsp;·&nbsp; 3p per riktig</span></div>
+        <div id="sf-bars"></div>
+      </div>
+
+      <!-- Finale -->
+      <div class="stat-card">
+        <div class="stat-card-label">Finale-tips <span class="stat-card-sub">5p per riktig</span></div>
+        <div id="fin-bars"></div>
+      </div>
+
+      <!-- VM-vinner -->
+      <div class="stat-card">
+        <div class="stat-card-label">VM-vinner <span class="stat-card-sub">8p</span></div>
+        <div id="vinn-bars"></div>
+      </div>
+
+      <!-- Bronsefinale -->
+      <div class="stat-card">
+        <div class="stat-card-label">Bronsefinale-tips <span class="stat-card-sub">2p per riktig</span></div>
+        <div id="brn-bars"></div>
+      </div>
+
+      <!-- Bronsevinner -->
+      <div class="stat-card">
+        <div class="stat-card-label">Bronsevinner <span class="stat-card-sub">3p</span></div>
+        <div id="brnv-bars"></div>
+      </div>
+
+      <!-- Picks overview table - full width -->
+      <div class="stat-card full">
+        <div class="stat-card-label">Alle tips &ndash; oversikt</div>
+        <div style="overflow-x:auto">
+          <table class="picks-table" id="picks-table">
+            <thead>
+              <tr>
+                <th>Deltaker</th>
+                <th>Semifinale (4 lag)</th>
+                <th>Finale (2 lag)</th>
+                <th>VM-vinner</th>
+                <th>Bronsefinale (2 lag)</th>
+                <th>3.-plass</th>
+              </tr>
+            </thead>
+            <tbody id="picks-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+var MEDALS = ["", "🥇", "🥈", "🥉"];
+
+function rowClass(i, n) {
+  if (i === 0) return "top-1";
+  if (i === 1) return "top-2";
+  if (i === 2) return "top-3";
+  if (i >= n - 3) {
+    if (i === n - 1) return "bot-1";
+    if (i === n - 2) return "bot-2";
+    return "bot-3";
+  }
+  return "mid";
+}
+
+function barHtml(items, max) {
+  var out = "";
+  var top = items.length > 0 ? items[0].antall : 1;
+  for (var i = 0; i < items.length; i++) {
+    var pct = Math.round((items[i].antall / top) * 100);
+    out += "<div class='c-row'>" +
+      "<div class='c-name'>" + items[i].lag + "</div>" +
+      "<div class='c-bar-bg'><div class='c-bar" + (i === 0 ? " gold" : "") + "' style='width:" + pct + "%'></div></div>" +
+      "<div class='c-n'>" + items[i].antall + "</div>" +
+      "</div>";
+  }
+  return out;
+}
+
+function initPage() {
+  var d = DATA;
+
+  // Hero meta
+  document.getElementById("meta-oppdatert").innerHTML = "Oppdatert <span>" + d.oppdatert + "</span>";
+  document.getElementById("meta-qf").innerHTML = "<span>" + d.qfBekreftet + "</span> av 8 QF-lag bekreftet";
+
+  // Status banner
+  document.getElementById("status-banner").innerHTML =
+    "<div class='status-banner'>" +
+    "Marokko er eneste bekreftede kvartfinalist &ndash; 8-delsfinaler er i gang" +
+    "</div>";
+
+  // Standings
+  var rows = "";
+  var n = d.deltakere.length;
+  for (var i = 0; i < n; i++) {
+    var p = d.deltakere[i];
+    var cls = rowClass(i, n);
+    var medal = i < 3 ? MEDALS[i + 1] : (i + 1) + ".";
+    var progPct = Math.round((p.total / d.maxPoeng) * 100);
+    var sub = "QF: " + p.qf + "p  ·  SF: " + p.sf + "p  ·  Finale: " + p.fin + "p  ·  BRN: " + p.brn + "p  ·  🏆: " + p.vin + "p";
+    rows += "<div class='player-row " + cls + "'>" +
+      "<div class='row-prog' style='width:" + progPct + "%'></div>" +
+      "<div class='medal-col'>" + medal + "</div>" +
+      "<div class='player-info'>" +
+        "<div class='player-name'>" + p.navn + "</div>" +
+        "<div class='player-sub'>" + sub + " &nbsp;<span class='pot'>Pot: " + p.potensial + "p</span></div>" +
+      "</div>" +
+      "<div class='score-area'>" +
+        "<div class='pts-num'>" + p.total + "</div>" +
+        "<div class='pts-unit'>poeng</div>" +
+      "</div>" +
+    "</div>";
+  }
+  // Not submitted
+  for (var j = 0; j < d.ikkeLeverte.length; j++) {
+    rows += "<div class='ns-row'>— " + d.ikkeLeverte[j] + "</div>";
+  }
+  document.getElementById("standings-rows").innerHTML = rows;
+
+  // Stats bars
+  document.getElementById("sf-bars").innerHTML = barHtml(d.sfStats, 16);
+  document.getElementById("fin-bars").innerHTML = barHtml(d.finaleStats, 16);
+  document.getElementById("vinn-bars").innerHTML = barHtml(d.vinnStats, 16);
+  document.getElementById("brn-bars").innerHTML = barHtml(d.brnStats, 16);
+  document.getElementById("brnv-bars").innerHTML = barHtml(d.brnvStats, 16);
+
+  // Picks table
+  var tbody = "";
+  for (var k = 0; k < d.picks.length; k++) {
+    var pk = d.picks[k];
+    tbody += "<tr>" +
+      "<td class='td-name'>" + pk.navn + "</td>" +
+      "<td class='td-picks'>" + pk.sf.join(", ") + "</td>" +
+      "<td class='td-picks'>" + pk.fin.join(", ") + "</td>" +
+      "<td class='td-winner'>" + pk.vinn + "</td>" +
+      "<td class='td-picks'>" + pk.brn.join(", ") + "</td>" +
+      "<td class='td-brnv'>" + pk.brnv + "</td>" +
+    "</tr>";
+  }
+  document.getElementById("picks-tbody").innerHTML = tbody;
+}
+
+initPage();
+</script>
+
+</body>
+</html>
