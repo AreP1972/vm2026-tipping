@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<!-- build:20260710001314 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<title>Maihaugen Sluttspill Samlet – VM 2026</title>
+</head>
+<body>
+
+<script id="DATA_BLOCK">
+const DATA = {
+  oppdatert: "9. juli 2026",
+  deltakere: [
+    { navn: "Tobias", del1: 23, del2: 10 },
+    { navn: "Tina",   del1: 18, del2: 14 },
+    { navn: "Are",    del1: 21, del2: 10 },
+    { navn: "Filip",  del1: 20, del2: 10 },
+    { navn: "Max",    del1: 17, del2: 12 },
+    { navn: "Sarah",  del1: 19, del2: 10 },
+    { navn: "Åge",    del1: 15, del2: 12 },
+    { navn: "Maddi",  del1: 15, del2: 12 },
+    { navn: "Maia",   del1: 17, del2: 10 },
+    { navn: "Malin",  del1: 16, del2: 10 },
+    { navn: "Marcus", del1: 14, del2: 12 },
+    { navn: "Ine",    del1: 15, del2: 10 },
+    { navn: "Hanne",  del1: 16, del2:  8 },
+    { navn: "Linus",  del1: 13, del2: 10 },
+    { navn: "Berit",  del1: 13, del2:  8 },
+    { navn: "Halvor", del1: 11, del2: 10 }
+  ],
+  ikkeLeverte: ["Petter (ikke levert)", "Ragnhild (ikke levert)"]
+};
+</script>
+
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html, body {
+  background: #060e1f;
+  font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  color: #e8eef8;
+  min-height: 100vh;
+}
+body { padding: 24px 16px 80px; }
+.page { max-width: 860px; margin: 0 auto; }
+
+/* ── HERO ───────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  border-radius: 20px 20px 0 0;
+  background: linear-gradient(160deg, #0b1830 0%, #091224 50%, #060e1f 100%);
+  border: 1px solid rgba(200,168,75,0.2);
+  overflow: hidden;
+}
+.hero-svg-wrap { position:absolute; inset:0; pointer-events:none; }
+.hero-svg-wrap svg { display:block; width:100%; height:100%; }
+.hero-text {
+  position:relative; z-index:1;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center;
+  padding: 46px 20px 40px;
+}
+.hero-eyebrow {
+  font-size:11px; font-weight:700;
+  letter-spacing:5px; text-transform:uppercase;
+  color:rgba(200,168,75,0.75);
+  margin-bottom:6px;
+  text-shadow:0 0 20px rgba(200,168,75,0.4);
+}
+.hero-badge {
+  display:inline-flex; align-items:center; gap:7px;
+  background:rgba(200,168,75,0.08);
+  border:1px solid rgba(200,168,75,0.22);
+  border-radius:20px;
+  padding:4px 14px;
+  font-size:11px; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase;
+  color:#c8a84b;
+  margin-bottom:10px;
+}
+.hero-title {
+  font-family:'Bebas Neue', sans-serif;
+  font-size:clamp(34px,8vw,82px);
+  letter-spacing:5px; line-height:0.9;
+  color:#fff;
+  text-shadow:0 0 60px rgba(200,168,75,0.3), 0 2px 0 rgba(0,0,0,0.5);
+}
+.hero-title em { font-style:normal; color:#c8a84b; }
+.hero-sub {
+  font-size:12px; letter-spacing:4px; text-transform:uppercase;
+  color:rgba(255,255,255,0.3);
+  margin-top:10px; font-weight:600;
+}
+.hero-meta {
+  display:flex; flex-direction:row;
+  gap:12px; justify-content:center;
+  margin-top:20px;
+}
+.hero-meta-item {
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(200,168,75,0.15);
+  border-radius:8px; padding:5px 14px;
+  font-size:12px; font-weight:600; letter-spacing:1px;
+  color:rgba(255,255,255,0.4);
+}
+.hero-meta-item span { color:#c8a84b; }
+
+/* ── LEGEND ─────────────────────────────────────────────── */
+.legend-bar {
+  display:flex; align-items:center; justify-content:center;
+  gap:20px; padding:10px 24px 14px;
+  border-bottom: 1px solid rgba(200,168,75,0.08);
+}
+.leg-item { display:flex; align-items:center; gap:6px; font-size:11px; font-weight:600; letter-spacing:1px; color:rgba(200,215,245,0.45); }
+.leg-dot { width:10px; height:10px; border-radius:2px; flex-shrink:0; }
+.dot-d1 { background:#7ab8c8; }
+.dot-d2 { background:#c8a84b; }
+
+/* ── STANDINGS ──────────────────────────────────────────── */
+.standings {
+  background:linear-gradient(180deg,#071428 0%,#060e1f 100%);
+  border:1px solid rgba(200,168,75,0.12);
+  border-top:none;
+}
+.section-header {
+  display:flex; align-items:center; gap:10px;
+  padding:18px 24px 14px;
+  border-bottom:1px solid rgba(200,168,75,0.08);
+}
+.section-header-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:20px; letter-spacing:3px;
+  color:rgba(255,255,255,0.45); text-transform:uppercase;
+}
+
+/* player row */
+.player-row {
+  display:flex; align-items:center;
+  padding:0 20px; min-height:68px;
+  border-bottom:1px solid rgba(255,255,255,0.03);
+  position:relative; transition:background 0.15s; cursor:default;
+}
+.player-row:hover { background:rgba(200,168,75,0.04); }
+
+.player-row::before {
+  content:''; position:absolute;
+  left:0; top:0; bottom:0; width:3px;
+}
+.top-1::before { background:linear-gradient(180deg,#ffd700,#ffb300); }
+.top-2::before { background:linear-gradient(180deg,#c0cce0,#9aabb8); }
+.top-3::before { background:linear-gradient(180deg,#cd8f4a,#a06030); }
+.mid::before   { background:transparent; }
+.bot-1::before { background:rgba(220,60,60,0.55); }
+.bot-2::before { background:rgba(210,60,60,0.35); }
+.bot-3::before { background:rgba(200,60,60,0.2); }
+
+.top-1 { background:rgba(255,215,0,0.04); }
+.top-2 { background:rgba(192,204,224,0.025); }
+.top-3 { background:rgba(205,143,74,0.03); }
+.bot-1 { background:rgba(200,50,50,0.04); }
+
+/* progress bg wash */
+.row-prog {
+  position:absolute; left:3px; top:0; bottom:0;
+  opacity:0.05; pointer-events:none;
+}
+.top-1 .row-prog { background:#ffd700; }
+.top-2 .row-prog { background:#c0cce0; }
+.top-3 .row-prog { background:#cd8f4a; }
+.mid   .row-prog { background:#c8a84b; }
+.bot-1 .row-prog, .bot-2 .row-prog, .bot-3 .row-prog { background:#cc3333; }
+
+/* rank + medal */
+.rank-col {
+  min-width:36px; text-align:center;
+  position:relative; z-index:1;
+}
+.rank-medal { font-size:22px; line-height:1; }
+.rank-num {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:19px; letter-spacing:1px;
+  color:rgba(160,185,220,0.3);
+  line-height:1;
+}
+
+/* info + bar */
+.player-info { flex:1; min-width:0; padding:0 14px 0 10px; position:relative; z-index:1; }
+.player-name {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:26px; letter-spacing:2px;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  line-height:1.1;
+}
+.top-1 .player-name { color:#ffd700; }
+.top-2 .player-name { color:#ccd8ea; }
+.top-3 .player-name { color:#d09a60; }
+.mid   .player-name { color:#cad7ee; }
+.bot-1 .player-name, .bot-2 .player-name, .bot-3 .player-name { color:rgba(200,210,230,0.45); }
+
+/* segmented bar */
+.seg-track {
+  display:flex; align-items:center;
+  gap:0; height:7px;
+  border-radius:4px; overflow:hidden;
+  background:rgba(255,255,255,0.05);
+  margin-top:5px;
+  max-width:340px;
+}
+.seg-d1 { height:100%; background:linear-gradient(90deg,#4a8ea8,#7ab8c8); border-radius:4px 0 0 4px; transition:width 0.7s ease; }
+.seg-gap { width:2px; background:#060e1f; flex-shrink:0; }
+.seg-d2 { height:100%; background:linear-gradient(90deg,#b08000,#c8a84b); border-radius:0 4px 4px 0; transition:width 0.7s ease; }
+
+/* sub-scores */
+.sub-scores {
+  display:flex; gap:12px; margin-top:4px;
+  font-size:11px; font-weight:600; letter-spacing:0.5px;
+}
+.sub-lbl { color:rgba(160,185,220,0.3); }
+.sub-val-d1 { color:rgba(122,184,200,0.75); }
+.sub-val-d2 { color:rgba(200,168,75,0.75); }
+
+/* total score */
+.score-area {
+  position:relative; z-index:1;
+  text-align:right; min-width:58px;
+}
+.pts-num {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:38px; line-height:1; letter-spacing:1px;
+}
+.top-1 .pts-num { color:#ffd700; }
+.top-2 .pts-num { color:#c0cce0; }
+.top-3 .pts-num { color:#cd8f4a; }
+.mid   .pts-num { color:rgba(200,168,75,0.65); }
+.bot-1 .pts-num, .bot-2 .pts-num, .bot-3 .pts-num { color:rgba(210,80,80,0.55); }
+
+.pts-unit {
+  font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  color:rgba(160,185,220,0.2); margin-top:-2px;
+}
+
+/* not-submitted row */
+.ns-row {
+  display:flex; align-items:center; gap:10px;
+  padding:10px 24px;
+  border-bottom:1px solid rgba(255,255,255,0.025);
+  border-left:3px solid rgba(100,140,200,0.1);
+  color:rgba(160,185,220,0.22);
+  font-size:12px; font-weight:600; letter-spacing:1px;
+}
+
+/* ── FOOTER PANEL ───────────────────────────────────────── */
+.footer-panel {
+  margin-top:4px;
+  border:1px solid rgba(200,168,75,0.12);
+  border-top:none;
+  background:#050d1c;
+  border-radius:0 0 18px 18px;
+  padding:24px 24px 32px;
+}
+.footer-note {
+  font-size:11px; color:rgba(160,185,220,0.25);
+  letter-spacing:0.5px; line-height:1.6;
+  text-align:center;
+}
+.footer-note strong { color:rgba(200,168,75,0.4); }
+
+/* ── RESPONSIVE ─────────────────────────────────────────── */
+@media(max-width:600px) {
+  .hero-svg-wrap { display:none; }
+  .hero-text { padding:28px 14px 28px; }
+  .hero-title { font-size:clamp(28px,10vw,52px); letter-spacing:3px; }
+  .hero-sub { font-size:10px; letter-spacing:2px; margin-top:8px; }
+  .hero-meta { gap:8px; }
+  .hero-meta-item { font-size:11px; padding:5px 10px; }
+  .player-row { padding:0 14px; min-height:62px; }
+  .player-name { font-size:22px; }
+  .pts-num { font-size:32px; }
+  .seg-track { max-width:200px; }
+  .sub-scores { font-size:10px; }
+}
+</style>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-svg-wrap">
+      <svg viewBox="0 0 860 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="g1" cx="80%" cy="30%" r="55%">
+            <stop offset="0%" stop-color="#7a6010" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#060e1f" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="g2" cx="15%" cy="75%" r="45%">
+            <stop offset="0%" stop-color="#4a8ea8" stop-opacity="0.10"/>
+            <stop offset="100%" stop-color="#060e1f" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#g1)"/>
+        <rect width="100%" height="100%" fill="url(#g2)"/>
+        <circle cx="750" cy="50" r="120" fill="rgba(200,168,75,0.04)"/>
+        <circle cx="100" cy="230" r="80" fill="rgba(74,142,168,0.04)"/>
+        <line x1="0" y1="200" x2="860" y2="80" stroke="rgba(200,168,75,0.04)" stroke-width="1"/>
+        <line x1="0" y1="230" x2="860" y2="110" stroke="rgba(200,168,75,0.02)" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="hero-text">
+      <div class="hero-eyebrow">Maihaugen Tippekonkurranse</div>
+      <div class="hero-badge">Sluttspill &nbsp;·&nbsp; Del 1 + Del 2</div>
+      <div class="hero-title">SLUTTSPILL<br><em>SAMLET</em></div>
+      <div class="hero-sub">16-delsfinale &nbsp;·&nbsp; 8-delsfinale &nbsp;·&nbsp; Kvartfinale &amp; videre</div>
+      <div class="hero-meta">
+        <div class="hero-meta-item" id="meta-oppdatert"></div>
+        <div class="hero-meta-item">Del 1 <span>48p</span> maks</div>
+        <div class="hero-meta-item">Del 2 <span>53p</span> maks</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STANDINGS -->
+  <div class="standings">
+    <div class="section-header" style="justify-content:space-between">
+      <div class="section-header-title">Stillingen &mdash; Del 1 + Del 2</div>
+      <div class="legend-bar" style="padding:0;border:none;gap:16px">
+        <div class="leg-item"><div class="leg-dot dot-d1"></div>Del 1</div>
+        <div class="leg-item"><div class="leg-dot dot-d2"></div>Del 2</div>
+      </div>
+    </div>
+    <div id="standings-rows"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-panel">
+    <p class="footer-note">
+      <strong>* Petter og Ragnhild</strong> leverte ikke sluttspillskjema og er ikke med i denne oversikten.<br>
+      Del 2 pågår – kvartfinaler starter 9. juli 2026.
+    </p>
+  </div>
+
+</div>
+
+<script>
+// ── Beregn totaler og rank ─────────────────────────────────
+DATA.deltakere.forEach(d => { d.total = d.del1 + d.del2; });
+DATA.deltakere.sort((a, b) => b.total - a.total || a.navn.localeCompare(b.navn, 'no'));
+
+var n = DATA.deltakere.length;
+var maxTotal = DATA.deltakere[0].total;
+
+// Competition ranking (ties share same rank, next rank skips)
+var rank = 1;
+DATA.deltakere.forEach((d, i) => {
+  if (i > 0 && d.total !== DATA.deltakere[i-1].total) rank = i + 1;
+  d.rank = rank;
+});
+
+// ── Hjelpefunksjoner ──────────────────────────────────────
+function rowClass(rank, isLast3, idx) {
+  if (rank === 1) return 'top-1';
+  if (rank === 2) return 'top-2';
+  if (rank === 3) return 'top-3';
+  if (idx === n - 1) return 'bot-1';
+  if (idx === n - 2) return 'bot-2';
+  if (idx === n - 3) return 'bot-3';
+  return 'mid';
+}
+
+function rankDisplay(d, cls) {
+  if (d.rank <= 3) {
+    var medals = { 1:'🥇', 2:'🥈', 3:'🥉' };
+    return '<div class="rank-medal">' + medals[d.rank] + '</div>';
+  }
+  // bottom 3 special icons
+  if (cls === 'bot-1') return '<div class="rank-medal">🪑</div>';
+  if (cls === 'bot-2') return '<div class="rank-medal">😅</div>';
+  if (cls === 'bot-3') return '<div class="rank-medal">🪵</div>';
+  return '<div class="rank-num">' + d.rank + '</div>';
+}
+
+function pct(v, tot) {
+  if (!maxTotal) return '0%';
+  return (v / maxTotal * 100).toFixed(1) + '%';
+}
+
+// ── Bygg rader ────────────────────────────────────────────
+document.getElementById('meta-oppdatert').textContent = 'Oppdatert ' + DATA.oppdatert;
+
+var html = '';
+DATA.deltakere.forEach((d, idx) => {
+  var cls   = rowClass(d.rank, idx >= n - 3, idx);
+  var rdisp = rankDisplay(d, cls);
+  var w1    = pct(d.del1, maxTotal);
+  var w2    = pct(d.del2, maxTotal);
+  var progW = pct(d.total, maxTotal);
+
+  html += '<div class="player-row ' + cls + '">';
+  html +=   '<div class="row-prog" style="width:' + progW + '"></div>';
+  html +=   '<div class="rank-col">' + rdisp + '</div>';
+  html +=   '<div class="player-info">';
+  html +=     '<div class="player-name">' + d.navn + '</div>';
+  html +=     '<div class="seg-track">';
+  html +=       '<div class="seg-d1" style="width:' + w1 + '"></div>';
+  if (d.del1 > 0 && d.del2 > 0) html += '<div class="seg-gap"></div>';
+  html +=       '<div class="seg-d2" style="width:' + w2 + '"></div>';
+  html +=     '</div>';
+  html +=     '<div class="sub-scores">';
+  html +=       '<span class="sub-lbl">Del 1</span><span class="sub-val-d1">' + d.del1 + 'p</span>';
+  html +=       '<span class="sub-lbl">&nbsp;·&nbsp; Del 2</span><span class="sub-val-d2">' + d.del2 + 'p</span>';
+  html +=     '</div>';
+  html +=   '</div>';
+  html +=   '<div class="score-area">';
+  html +=     '<div class="pts-num">' + d.total + '</div>';
+  html +=     '<div class="pts-unit">poeng</div>';
+  html +=   '</div>';
+  html += '</div>';
+});
+
+// Ikke levert
+DATA.ikkeLeverte.forEach(navn => {
+  html += '<div class="ns-row">— ' + navn + '</div>';
+});
+
+document.getElementById('standings-rows').innerHTML = html;
+</script>
+
+</body>
+</html>
