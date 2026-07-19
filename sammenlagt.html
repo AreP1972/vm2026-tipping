@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<!-- build:20260720001932 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<title>Maihaugen VM 2026 – Sammenlagt</title>
+</head>
+<body>
+
+<script id="DATA_BLOCK">
+const DATA = {
+  oppdatert: "19. juli 2026",
+  del2Status: "🏆 Spania vant VM 2026! Alle poeng er talt opp.",
+  deltakere: [
+    { navn: "Tobias",   grunn: 64, del1: 23, del2: 29  },
+    { navn: "Are",   grunn: 60, del1: 21, del2: 31  },
+    { navn: "Linus",   grunn: 66, del1: 13, del2: 32  },
+    { navn: "Halvor",   grunn: 63, del1: 11, del2: 32  },
+    { navn: "Tina",   grunn: 65, del1: 18, del2: 23  },
+    { navn: "Sarah",   grunn: 61, del1: 19, del2: 21  },
+    { navn: "Ine",   grunn: 55, del1: 15, del2: 29  },
+    { navn: "Maia",   grunn: 60, del1: 17, del2: 21  },
+    { navn: "Malin",   grunn: 57, del1: 16, del2: 24  },
+    { navn: "Åge",   grunn: 54, del1: 15, del2: 26  },
+    { navn: "Filip",   grunn: 50, del1: 20, del2: 24  },
+    { navn: "Hanne",   grunn: 56, del1: 16, del2: 22  },
+    { navn: "Marcus",   grunn: 47, del1: 14, del2: 31  },
+    { navn: "Max",   grunn: 48, del1: 17, del2: 25  },
+    { navn: "Maddi",   grunn: 45, del1: 15, del2: 23  },
+    { navn: "Berit",   grunn: 46, del1: 13, del2: 13  },
+    { navn: "Petter",   grunn: 64, del1: 0,  del2: 0, ingenSluttspill: true },
+    { navn: "Ragnhild",   grunn: 52, del1: 0,  del2: 0, ingenSluttspill: true }
+  ]
+};
+</script>
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { background: #03120a; min-height: 100%; }
+
+body {
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(34,120,62,0.18) 0%, transparent 70%),
+    #03120a;
+  font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  color: #fff;
+  min-height: 100vh;
+  padding: 24px 12px 56px;
+}
+
+.page { max-width: 700px; margin: 0 auto; }
+
+/* ── HEADER ───────────────────────────────────────── */
+.header {
+  text-align: center;
+  padding: 36px 24px 28px;
+  background: linear-gradient(170deg, #0f3520 0%, #071a0e 100%);
+  border-radius: 20px 20px 0 0;
+  border-bottom: 2px solid rgba(200,168,75,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 28px,
+      rgba(255,255,255,0.025) 28px,
+      rgba(255,255,255,0.025) 29px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 28px,
+      rgba(255,255,255,0.025) 28px,
+      rgba(255,255,255,0.025) 29px
+    );
+  pointer-events: none;
+}
+
+.header-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #c8a84b;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(38px, 9vw, 64px);
+  letter-spacing: 2px;
+  line-height: 0.95;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(34,120,62,0.5);
+  position: relative;
+}
+
+.header h1 span { color: #c8a84b; }
+
+.header-sub {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(20px, 5vw, 32px);
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.55);
+  margin-top: 4px;
+  position: relative;
+}
+
+.header-meta {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.meta-pill {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 5px 14px;
+  color: rgba(255,255,255,0.65);
+}
+
+/* ── LEGEND ───────────────────────────────────────── */
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.dot-grunn { background: #2d6a4f; }
+.dot-del1  { background: #52b788; }
+.dot-del2  { background: #c8a84b; }
+
+/* ── ROWS ─────────────────────────────────────────── */
+.list {
+  background: linear-gradient(180deg, #0a2614 0%, #061510 100%);
+  border-radius: 0 0 20px 20px;
+  overflow: hidden;
+}
+
+.row {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: background 0.15s;
+}
+.row:last-child { border-bottom: none; }
+
+.row-top-1 {
+  background: linear-gradient(90deg, rgba(200,168,75,0.15) 0%, transparent 60%);
+  border-left: 3px solid #c8a84b;
+}
+.row-top-2 {
+  background: linear-gradient(90deg, rgba(180,180,190,0.1) 0%, transparent 60%);
+  border-left: 3px solid #b0b4c0;
+}
+.row-top-3 {
+  background: linear-gradient(90deg, rgba(170,120,70,0.1) 0%, transparent 60%);
+  border-left: 3px solid #aa7846;
+}
+.row-bottom {
+  background: linear-gradient(90deg, rgba(140,60,60,0.08) 0%, transparent 60%);
+  border-left: 3px solid rgba(160,60,60,0.4);
+}
+.row-mid { border-left: 3px solid transparent; }
+
+/* ── ROW HEADER LINE ──────────────────────────────── */
+.row-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 9px;
+}
+
+.rank-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 52px;
+  flex-shrink: 0;
+}
+
+.rank-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  line-height: 1;
+  color: rgba(255,255,255,0.45);
+}
+.row-top-1 .rank-num { color: #c8a84b; }
+.row-top-2 .rank-num { color: #c0c4d0; }
+.row-top-3 .rank-num { color: #c09060; }
+
+.rank-icon { font-size: 20px; line-height: 1; }
+
+.name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(22px, 5vw, 30px);
+  letter-spacing: 1.5px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.no-sluttspill-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.07);
+  border-radius: 4px;
+  padding: 2px 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.total {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(22px, 5vw, 30px);
+  letter-spacing: 1px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.total-pts {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.45);
+}
+
+/* ── BAR ──────────────────────────────────────────── */
+.bar-wrap {
+  height: 16px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 7px;
+}
+
+.bar-fill {
+  height: 100%;
+  display: flex;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+
+.seg {
+  height: 100%;
+  transition: width 0.6s ease;
+}
+.seg-grunn { background: linear-gradient(90deg, #1b4332, #2d6a4f); }
+.seg-del1  { background: linear-gradient(90deg, #40916c, #52b788); }
+.seg-del2  { background: linear-gradient(90deg, #b8920a, #c8a84b); }
+.seg-gap   { background: rgba(255,255,255,0.08); width: 1px; flex-shrink: 0; }
+
+/* ── BREAKDOWN ────────────────────────────────────── */
+.breakdown {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.bp {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: rgba(255,255,255,0.4);
+}
+.bp span { color: rgba(255,255,255,0.75); }
+.bp-sep { color: rgba(255,255,255,0.18); font-size: 11px; }
+
+/* ── DIVIDER (top/mid/bot sections) ──────────────── */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.03);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.div-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+}
+.div-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+}
+
+/* ── FOOTER ───────────────────────────────────────── */
+.footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  line-height: 1.7;
+  padding: 0 8px;
+}
+
+.footer strong { color: rgba(255,255,255,0.5); }
+
+/* ── SCORE SUMMARY CARDS ──────────────────────────── */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 16px;
+  background: rgba(255,255,255,0.02);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.sum-card {
+  background: rgba(255,255,255,0.04);
+  border-radius: 10px;
+  padding: 10px 8px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+.sum-card-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.sum-card-label.lbl-grunn { color: #52b788; }
+.sum-card-label.lbl-del1  { color: #74c69d; }
+.sum-card-label.lbl-del2  { color: #c8a84b; }
+
+.sum-card-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 1px;
+  color: #fff;
+  line-height: 1;
+}
+
+.sum-card-sub {
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+  margin-top: 2px;
+}
+</style>
+
+<div class="page">
+  <div class="header">
+    <div class="header-eyebrow">Maihaugen Tippekonkurranse · VM 2026</div>
+    <h1>SAMMENLAGT<br><span>STILLINGSLISTE</span></h1>
+    <div class="header-sub">Grunnspill + Del 1 + Del 2</div>
+    <div class="header-meta">
+      <div class="meta-pill" id="meta-dato">Oppdatert –</div>
+      <div class="meta-pill" id="meta-del2">Del 2: –</div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item">
+      <div class="legend-dot dot-grunn"></div>Grunnspill
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot dot-del1"></div>Sluttspill Del 1
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot dot-del2"></div>Del 2 (pågår)
+    </div>
+  </div>
+
+  <div class="summary-cards" id="summary-cards"></div>
+
+  <div class="list" id="list"></div>
+</div>
+
+<div class="footer" id="footer"></div>
+
+<script>
+DATA.deltakere.forEach(d => { d.total = d.grunn + d.del1 + d.del2; });
+DATA.deltakere.sort((a, b) => b.total - a.total || a.navn.localeCompare(b.navn, 'no'));
+
+const n = DATA.deltakere.length;
+const maxTotal = DATA.deltakere[0].total;
+
+// Compute ranks (standard competition ranking: tied = same rank, next rank skips)
+let rank = 1;
+for (let i = 0; i < n; i++) {
+  if (i > 0 && DATA.deltakere[i].total !== DATA.deltakere[i-1].total) {
+    rank = i + 1;
+  }
+  DATA.deltakere[i].rank = rank;
+}
+
+function topIcon(rank) {
+  if (rank === 1) return '🥇';
+  if (rank === 2) return '🥈';
+  if (rank === 3) return '🥉';
+  return '';
+}
+
+function botIcon(idx) {
+  if (idx === n - 1) return '🪑';
+  if (idx === n - 2) return '😅';
+  if (idx === n - 3) return '🪵';
+  return '';
+}
+
+function rowClass(d, idx) {
+  if (d.rank === 1) return 'row row-top-1';
+  if (d.rank === 2) return 'row row-top-2';
+  if (d.rank === 3) return 'row row-top-3';
+  if (idx >= n - 3) return 'row row-bottom';
+  return 'row row-mid';
+}
+
+function pct(a, b) { return b > 0 ? (a / b * 100).toFixed(3) + '%' : '0%'; }
+
+// ── Header meta ────────────────────────────────────────
+document.getElementById('meta-dato').textContent = 'Oppdatert ' + DATA.oppdatert;
+document.getElementById('meta-del2').textContent = 'Del 2: ' + DATA.del2Status;
+
+// ── Summary cards ──────────────────────────────────────
+const grunnMax = Math.max(...DATA.deltakere.map(d => d.grunn));
+const del1Max  = Math.max(...DATA.deltakere.map(d => d.del1));
+const del2Max  = Math.max(...DATA.deltakere.map(d => d.del2));
+
+document.getElementById('summary-cards').innerHTML = `
+  <div class="sum-card">
+    <div class="sum-card-label lbl-grunn">Grunnspill</div>
+    <div class="sum-card-val">${grunnMax}p</div>
+    <div class="sum-card-sub">72 kamper · maks</div>
+  </div>
+  <div class="sum-card">
+    <div class="sum-card-label lbl-del1">Del 1</div>
+    <div class="sum-card-val">${del1Max}p</div>
+    <div class="sum-card-sub">16 kamper · maks</div>
+  </div>
+  <div class="sum-card">
+    <div class="sum-card-label lbl-del2">Del 2</div>
+    <div class="sum-card-val">${del2Max}p</div>
+    <div class="sum-card-sub">${DATA.del2Status}</div>
+  </div>
+`;
+
+// ── List ───────────────────────────────────────────────
+const list = document.getElementById('list');
+let prevSectionClass = 'top';
+
+DATA.deltakere.forEach((d, idx) => {
+  const icon = topIcon(d.rank) || botIcon(idx);
+  const cls  = rowClass(d, idx);
+  const curSection = d.rank <= 3 ? 'top' : idx >= n - 3 ? 'bot' : 'mid';
+
+  if (idx > 0 && curSection !== prevSectionClass) {
+    const label = curSection === 'mid' ? 'Midtsjiktet' : 'Bunnen';
+    list.insertAdjacentHTML('beforeend', `
+      <div class="section-divider">
+        <div class="div-line"></div>
+        <div class="div-label">${label}</div>
+        <div class="div-line"></div>
+      </div>
+    `);
+  }
+  prevSectionClass = curSection;
+
+  const barW   = pct(d.total, maxTotal);
+  const grunnW = pct(d.grunn, d.total);
+  const del1W  = pct(d.del1, d.total);
+  const del2W  = pct(d.del2, d.total);
+
+  const noTag   = d.ingenSluttspill ? `<span class="no-sluttspill-tag">kun grunn</span>` : '';
+  const bpDel1  = d.del1 > 0 ? `<span class="bp-sep">·</span><span class="bp">Del 1 <span>${d.del1}p</span></span>` : '';
+  const bpDel2  = d.del2 > 0 ? `<span class="bp-sep">·</span><span class="bp">Del 2 <span>${d.del2}p</span></span>` : '';
+
+  const seg1 = d.del1 > 0
+    ? `<div class="seg seg-gap"></div><div class="seg seg-del1" style="width:${del1W}"></div>`
+    : '';
+  const seg2 = d.del2 > 0
+    ? `<div class="seg seg-gap"></div><div class="seg seg-del2" style="width:${del2W}"></div>`
+    : '';
+
+  list.insertAdjacentHTML('beforeend', `
+    <div class="${cls}">
+      <div class="row-head">
+        <div class="rank-badge">
+          <span class="rank-num">${d.rank}</span>
+          ${icon ? `<span class="rank-icon">${icon}</span>` : ''}
+        </div>
+        <div class="name">${d.navn}</div>
+        ${noTag}
+        <div class="total">${d.total}<span class="total-pts">p</span></div>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar-fill" style="width:${barW}">
+          <div class="seg seg-grunn" style="width:${grunnW}"></div>
+          ${seg1}
+          ${seg2}
+        </div>
+      </div>
+      <div class="breakdown">
+        <span class="bp">Grunn <span>${d.grunn}p</span></span>
+        ${bpDel1}
+        ${bpDel2}
+      </div>
+    </div>
+  `);
+});
+
+// ── Footer ─────────────────────────────────────────────
+document.getElementById('footer').innerHTML = `
+  <strong>* Petter og Ragnhild</strong> leverte ikke sluttspillskjema – kun grunnspillpoeng teller for dem.<br>
+  Del 2 pågår fortsatt – ${DATA.del2Status}.
+`;
+</script>
+
+</body>
+</html>
